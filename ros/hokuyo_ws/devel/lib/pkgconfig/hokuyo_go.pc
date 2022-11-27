@@ -1,0 +1,8 @@
+prefix=/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/devel
+
+Name: hokuyo_go
+Description: Description of hokuyo_go
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

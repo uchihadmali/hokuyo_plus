@@ -25,7 +25,7 @@ digitalWrite(directionPin, HIGH);
 digitalWrite(brakePin, LOW);
 
 //set work duty for the motor
-analogWrite(pwmPin, 50);
+analogWrite(pwmPin, 0);
 
 delay(500);
 }

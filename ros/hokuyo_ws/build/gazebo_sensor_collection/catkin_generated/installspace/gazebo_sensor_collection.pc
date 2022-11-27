@@ -1,0 +1,8 @@
+prefix=/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/install
+
+Name: gazebo_sensor_collection
+Description: Description of gazebo_sensor_collection
+Version: 0.0.0
+Cflags: -I${prefix}/include -I/usr/include
+Libs: -L${prefix}/lib -lgazebo_sensor_collection /usr/lib/x86_64-linux-gnu/libboost_thread.so.1.71.0
+Requires: roscpp sensor_msgs geometry_msgs visualization_msgs std_msgs std_srvs dynamic_reconfigure message_generation message_runtime nav_msgs gazebo_dev gazebo_plugins gazebo_ros gazebo_msgs tf urdf xacro cv_bridge image_transport message_filters camera_info_manager genmsg hector_gazebo_plugins roscpp gazebo_ros

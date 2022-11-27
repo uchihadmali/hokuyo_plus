@@ -1,7 +1,7 @@
 #include <util/atomic.h> // For the ATOMIC_BLOCK macro
 
 #define ENCA 2 // YELLOW
-#define ENCB 3 // WHITE
+#define ENCB 21 // WHITE
 
 volatile int posi = 0; 
 
@@ -18,7 +18,7 @@ void loop() {
     pos = posi;
   }
 
-  Serial.println(pos);
+  Serial.println(pos*0.36);
 }
 
 void readEncoder(){

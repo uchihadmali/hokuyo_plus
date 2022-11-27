@@ -1,7 +1,7 @@
 #include <util/atomic.h> // For the ATOMIC_BLOCK macro
 
-#define ENCA 2 // BLUE
-#define ENCB 21 // GRAY
+#define ENCA 2 // GREEN
+#define ENCB 21 // PURPLE
 
 //motor parameters
 int directionPin = 12;
@@ -28,12 +28,12 @@ long prevT = 0;
 double control_input=0;
 
 //PID constants
-double Kp=30;
-double Ki=0.1;
-double Kd=3;
+double Kp=0.1;
+double Ki=0.0;
+double Kd=0;
 
 //reference
-int vel_ref=10; //angle per second (alt sınır 2, üst sınır 200)
+int vel_ref=5; //angle per second (alt sınır 2, üst sınır 200)
 
 void setup() {
   Serial.begin(9600);
@@ -88,7 +88,7 @@ void readEncoder(){
 
 void PID_calculation(){
 
-  angle=(posi*0.45); //pos to angle
+  angle=(posi*0.36); //pos to angle
   
   // time difference
   long currT = micros();

@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/devel/setup.sh

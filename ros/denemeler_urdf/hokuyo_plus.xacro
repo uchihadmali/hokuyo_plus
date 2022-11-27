@@ -1,0 +1,189 @@
+<robot name="tama">
+  <!-- * * * Link Definitions * * * -->
+  	<link name="world" />
+ 	 <link name="taban">
+		<visual>
+		    <origin xyz="0 0 0.035" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.0625 0.095 0.07"/>
+			</geometry>
+			<material name="Cyan1">
+	       		<color rgba="0 0.9 0.9 1.0"/>
+	     	</material>
+		</visual>
+		<inertial>
+				<mass value="1e-5" />
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+		</inertial>
+	</link>
+
+ 	<link name="pan_direk">
+		<visual>
+		    <origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.035 0.038 0.044"/>
+			</geometry>
+			<material name="Yellow2">
+	       		<color rgba="0.8 0.8 0 1.0"/>
+	     	</material>
+		</visual>	
+		<inertial>
+				<mass value="1e-5" />
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+		</inertial>
+	</link>
+
+	<link name="tilt_direk">
+		<visual>
+		    <origin xyz="-0.022 0 0" rpy="0 -1.57 0"/>
+			<geometry>
+				<box size="0.005 0.005 0.044"/>
+			</geometry>
+			<material name="Cyan1">
+	       		<color rgba="0 0.9 0.9 1.0"/>
+	     	</material>
+		</visual>
+		<inertial>
+				<mass value="1e-5" />
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+			</inertial>	
+	</link>
+
+	<link name="hokuyo_taban">
+		<visual>
+		    <origin xyz="0 0 0" rpy="0 -1.57 0"/>
+			<geometry>
+				<box size="0.13 0.06 0.003 "/>
+			</geometry>
+			<material name="Yellow2">
+	       		<color rgba="0.8 0.8 0 1.0"/>
+	     	</material>
+		</visual>
+		<inertial>
+				<mass value="1e-5" />
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+			</inertial>	
+	</link>
+	
+	<link name="hokuyo_link">
+	<collision>
+	<origin xyz="0 0 -0.05" rpy="0 0 0"/>
+	<geometry>
+	<box size="0.1 0.1 0.08"/>
+	</geometry>
+	</collision>
+
+	<visual>
+		<origin xyz="-0.035 0 0" rpy="0 0 0"/>
+		<geometry>
+			<box size="0.07 0.05 0.05"/>
+		</geometry>
+		<material name="Cyan1">
+	       	<color rgba="0 0.9 0.9 1.0"/>
+	     	</material>
+	</visual>
+
+	<inertial>
+	<mass value="1e-5" />
+	<origin xyz="0 0 0" rpy="0 0 0"/>
+	<inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+	</inertial>
+	</link>
+
+	<joint name="virtual_joint" type="fixed">
+    	<parent link="world"/>
+    	<child link="taban"/>>
+    	<origin xyz="0 0 0" rpy="0 0 0"/>
+    	<dynamics damping="1.0"/>
+  	</joint>
+	
+
+	<joint name="pan_joint" type="revolute">
+    	<parent link="taban"/>
+    	<child link="pan_direk"/>
+    	<origin xyz="0 -0.0285 0.092" rpy="0 0 0"/>
+    	<dynamics damping="1.0"/>
+    	<axis xyz="0 0 1"/>
+    	<limit lower="-3.1416" upper="3.1416" effort="10" velocity="3"/>
+  	</joint>
+	
+	<joint name="tilt_joint" type="revolute">
+    	<parent link="pan_direk"/>
+    	<child link="tilt_direk"/>
+    	<origin xyz="0 0 0.022" rpy="0 1.57 0"/>
+    	<axis xyz="0 0 1"/>
+    	<limit lower="-0.8727" upper="0.8727" effort="10" velocity="3"/>
+    	<dynamics damping="1.0"/>
+  	</joint>
+      
+
+	<joint name="hokuyo_base_joint" type="fixed">
+    	<parent link="tilt_direk"/>
+    	<child link="hokuyo_taban"/>
+    	<origin xyz="-0.0450 0 0" rpy="0 0 0"/>
+    	<dynamics damping="1.0"/>
+  	</joint>
+
+	<joint name="hokuyo_joint" type="fixed">
+			<origin xyz="0 0 0.04" rpy="0 0 0"/>
+			<parent link="hokuyo_taban"/>
+			<child link="hokuyo_link"/>
+			<dynamics damping="1.0"/>
+	</joint>
+
+	<gazebo reference="taban">
+                <material>Gazebo/Orange</material>
+        </gazebo>
+        
+        <gazebo reference="pan_direk">
+                <material>Gazebo/Blue</material>
+        </gazebo>
+        
+        <gazebo reference="tilt_direk">
+                <material>Gazebo/White</material>
+        </gazebo>
+        
+        <gazebo reference="hokuyo_taban">
+                <material>Gazebo/Orange</material>
+        </gazebo>
+        
+	<!-- gazebo reference for hokuyo-->
+	<gazebo reference="hokuyo_link">
+			<sensor type="gpu_ray" name="hokuyo_sensor">
+				<pose>0 0 0 0 0 0</pose>
+				<!--visualize>${visualize}</visualize-->
+				<update_rate>10</update_rate>
+
+				<ray>
+					<scan>
+						<horizontal>
+							<samples>640</samples>
+							<resolution>1</resolution>
+							<min_angle>-1.57</min_angle>
+							<max_angle>1.57</max_angle>
+						</horizontal>
+					</scan>
+					<range>
+						<min>0.02</min>
+						<max>4.0</max>
+						<resolution>0.00628318531</resolution>
+					</range>
+					<noise>
+						<type>gaussian</type>
+						<mean>0.0</mean>
+						<stddev>0.01</stddev>
+					</noise>
+				</ray>
+
+				<plugin name="hokuyo_controller" filename="libgazebo_ros_gpu_laser.so">
+					<topicName>hokuyo/scan</topicName>
+					<frameName>hokuyo_link</frameName>
+				</plugin>
+			</sensor>
+		</gazebo>
+
+</robot>
