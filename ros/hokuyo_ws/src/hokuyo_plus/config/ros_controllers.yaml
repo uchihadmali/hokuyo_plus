@@ -1,7 +1,7 @@
 # MoveIt-specific simulation settings
 moveit_sim_hw_interface:
-    joint_model_group: controllers_initial_group_
-    joint_model_group_pose: controllers_initial_pose_
+    joint_model_group: body
+    joint_model_group_pose: initial_pose
 # Settings for ros_control control loop
 generic_hw_control_loop:
     loop_hz: 300
@@ -17,8 +17,8 @@ hardware_interface:
 joint_state_controller:
     type: joint_state_controller/JointStateController
     publish_rate: 50
-body_controller:
-    type: effort_controllers/JointPositionController
+gazebo_ros_control:
+    type: effort_controllers/JointTrajectoryController
     joints:
         - pan_joint
         - tilt_joint
@@ -30,8 +30,8 @@ body_controller:
     state_publish_rate: 25
 
 controller_list:
-    - name: body_controller
-      action_ns: follow_joint_trajectory
+    - name: gazebo_ros_control
+      action_ns: "follow_joint_trajectory"
       type: FollowJointTrajectory
       default: true
       joints:

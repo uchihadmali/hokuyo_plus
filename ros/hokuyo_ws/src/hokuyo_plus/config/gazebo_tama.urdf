@@ -19,7 +19,7 @@
         <inertial>
             <mass value="1" />
             <origin rpy="0 0 0" xyz="0 0 0" />
-            <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+            <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
         </inertial>
     </link>
     <link name="pan_direk">
@@ -35,7 +35,7 @@
         <inertial>
             <mass value="0.50" />
             <origin rpy="0 0 0" xyz="0 0 0" />
-            <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+            <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
         </inertial>
     </link>
     <link name="tilt_direk">
@@ -51,7 +51,7 @@
         <inertial>
             <mass value="0.20" />
             <origin rpy="0 0 0" xyz="0 0 0" />
-            <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+            <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
         </inertial>
     </link>
     <link name="hokuyo_taban">
@@ -67,7 +67,7 @@
         <inertial>
             <mass value="0.10" />
             <origin rpy="0 0 0" xyz="0 0 0" />
-            <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+            <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
         </inertial>
     </link>
     <link name="hokuyo_link">
@@ -95,7 +95,6 @@
     <joint name="virtual_joint" type="fixed">
         <parent link="world" />
         <child link="taban" />
-        &gt;
         <origin rpy="0 0 0" xyz="0 0 0" />
         <dynamics damping="1.0" />
     </joint>
@@ -129,26 +128,29 @@
     </joint>
     <gazebo reference="taban">
                 <material>Gazebo/Orange</material>
-                	
+                <turnGravityOff>true</turnGravityOff>
         </gazebo>
         
         <gazebo reference="pan_direk">
                 <material>Gazebo/Blue</material>
+                <turnGravityOff>true</turnGravityOff>
                 
         </gazebo>
         
         <gazebo reference="tilt_direk">
                 <material>Gazebo/White</material>
+                <turnGravityOff>true</turnGravityOff>
         </gazebo>
         
         <gazebo reference="hokuyo_taban">
                 <material>Gazebo/Orange</material>
+                <turnGravityOff>true</turnGravityOff>
         </gazebo>
     <!-- gazebo reference for hokuyo-->
     <gazebo reference="hokuyo_link">
         <sensor name="hokuyo_sensor" type="gpu_ray">
             <pose>0 0 0 0 0 0</pose>
-            <!--visualize>${visualize}</visualize-->
+            <material>Gazebo/Blue</material>
             <update_rate>10</update_rate>
             <ray>
                 <scan>
@@ -173,10 +175,9 @@
             <plugin filename="libgazebo_ros_gpu_laser.so" name="body_controller">
                 <topicName>hokuyo/scan</topicName>
                 <frameName>hokuyo_link</frameName>
-            </plugin>
+         </plugin>
         </sensor>
-	<plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-  	</plugin>
+        <turnGravityOff>true</turnGravityOff>
     </gazebo>
     <transmission name="trans_pan_joint">
         <type>transmission_interface/SimpleTransmission</type>
@@ -199,7 +200,8 @@
         </actuator>
     </transmission>
     <gazebo>
-            <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so"/>
+            <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            </plugin>
      </gazebo>
 </robot>
 
