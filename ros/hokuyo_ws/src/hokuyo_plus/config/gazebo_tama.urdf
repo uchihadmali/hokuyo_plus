@@ -148,17 +148,17 @@
         </gazebo>
     <!-- gazebo reference for hokuyo-->
     <gazebo reference="hokuyo_link">
+    	<material>Gazebo/Blue</material>
         <sensor name="hokuyo_sensor" type="ray">
             <pose>0 0 0 0 0 0</pose>
-            <material>Gazebo/Blue</material>
             <update_rate>10</update_rate>
             <ray>
                 <scan>
                     <horizontal>
                         <samples>640</samples>
                         <resolution>1</resolution>
-                        <min_angle>-1.57</min_angle>
-                        <max_angle>1.57</max_angle>
+                        <min_angle>-2.094</min_angle>
+                        <max_angle>2.094</max_angle>
                     </horizontal>
                 </scan>
                 <range>
@@ -169,7 +169,7 @@
                 <noise>
                     <type>gaussian</type>
                     <mean>0.0</mean>
-                    <stddev>0.01</stddev>
+                    <stddev>0.0001</stddev>
                 </noise>
             </ray>
             <plugin filename="libgazebo_ros_laser.so" name="body_controller">
