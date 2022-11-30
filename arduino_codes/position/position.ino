@@ -78,7 +78,7 @@ void readEncoder(){
 
 void PID_calculation(){
 
-  angle=(pos0.45); //pos to angle
+  angle=(pos*0.45); //pos to angle
   error=set_point-angle;
 
   changeError= error-last_error; //Derivative term

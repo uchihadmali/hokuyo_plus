@@ -15,6 +15,7 @@ void setup() {
 
 }
 void loop(){
+  angle=count/10.36;
     Serial.println( angle );
 }
   
