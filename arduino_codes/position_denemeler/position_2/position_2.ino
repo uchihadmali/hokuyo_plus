@@ -9,8 +9,7 @@ int pwmPin = 3;
 int brakePin = 9;
 
 //boolean to switch direction
-bool default_direction = true; //
-bool direction_state;
+bool directionState = false;
 
 //encoder parameters
 volatile int posi = 0; 
@@ -22,18 +21,13 @@ double error;
 double last_error;
 double angle;
 double total_error;
-double change_error;
-double control_signal;
-
-float delta_t;
-long curr_t;
-long prev_t;
+double changeError;
 
 //PID constants
-double Kp=16;
-double Ki=0;
-double Kd=1;
-int set_point= 10; //angle
+double Kp=10;
+double Ki=0.1;
+double Kd=3;
+int set_point= 45; //angle
 
 void setup() {
   Serial.begin(9600);
@@ -54,8 +48,7 @@ void loop() {
 
   PID_calculation();
 
-  //setting motor direction pin
-  if(direction_state){
+  if(directionState){
     digitalWrite(directionPin, LOW);
   }
   else{
@@ -65,11 +58,12 @@ void loop() {
   if(pidTerm==0){
     digitalWrite(brakePin, HIGH);
   }
+
   else{
     digitalWrite(brakePin, LOW);
   }
 
-  analogWrite(pwmPin, control_signal);
+  analogWrite(pwmPin, pidTerm);
 }
 
 void readEncoder(){
@@ -84,35 +78,19 @@ void readEncoder(){
 
 void PID_calculation(){
 
-  
-  //delta time calculation
-  curr_t= micros();
-  delta_t= ((float)(curr_t-prev_t))/(1.0e6);
-  prev_t= curr_t;
+  angle=(pos)*(0.45); //pos to angle
+  error=set_point-angle;
 
-  
-  angle=(pos*0.36); //position to angle
-  error=set_point-angle; //error calculation
+  changeError= error-last_error; //Derivative term
+  total_error+=error;
+  pidTerm=(Kp*error)+(Ki*total_error)+(Kd*changeError);//total gain
+  if(pidTerm<-255){
+    pidTerm=255;
+    directionState=!directionState;
+  }
+  else if(pidTerm>255){
+    pidTerm=255;
+  }
 
-  change_error= (error-last_error)/delta_t; //Derivative term
-  total_error+=delta_t*error; //integral term
-  pidTerm=(Kp*error)+(Ki*total_error)+(Kd*change_error); //control signal calculation
-
-  
-  //setting direction
-  if(pidTerm<0){
-    direction_state=!default_direction;
-  }
-  else{
-    direction_state=default_direction;
-  }
-  
-  control_signal=abs(pidTerm);
-  if(control_signal>255){
-    control_signal=255;
-  }
-  if(control_signal<50){
-    control_signal=0;
-  }
   last_error=error;
   }

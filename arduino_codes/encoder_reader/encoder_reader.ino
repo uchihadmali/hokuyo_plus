@@ -18,7 +18,7 @@ void loop() {
     pos = posi;
   }
 
-  Serial.println(pos*0.36);
+  Serial.println(pos);
 }
 
 void readEncoder(){
