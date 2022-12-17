@@ -129,7 +129,7 @@
   	</joint>
 
 	<joint name="hokuyo_joint" type="fixed">
-			<origin xyz="0 0 0.04" rpy="0 0 0"/>
+			<origin xyz="0 0 0.04" rpy="0 -1.57 0"/>
 			<parent link="hokuyo_taban"/>
 			<child link="hokuyo_link"/>
 			<dynamics damping="1.0"/>
