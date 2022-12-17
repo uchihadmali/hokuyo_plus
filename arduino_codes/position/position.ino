@@ -30,9 +30,9 @@ long curr_t;
 long prev_t;
 
 //PID constants
-double Kp=16;
+double Kp=25;
 double Ki=0;
-double Kd=1;
+double Kd=2;
 int set_point= 10; //angle
 
 void setup() {

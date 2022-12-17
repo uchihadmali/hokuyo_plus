@@ -33,7 +33,7 @@ long prev_t;
 double Kp=16;
 double Ki=0;
 double Kd=1;
-int set_point= 10; //angle
+int set_point= 30; //angle
 
 void setup() {
   Serial.begin(9600);

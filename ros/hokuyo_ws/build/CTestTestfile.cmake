@@ -5,5 +5,6 @@
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.
 subdirs("gtest")
+subdirs("aws-robomaker-small-house-world")
 subdirs("hokuyo_plus")
 subdirs("hokuyo_go")

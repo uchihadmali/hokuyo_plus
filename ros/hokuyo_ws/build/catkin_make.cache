@@ -1,2 +1,2 @@
-hokuyo_go:hokuyo_plus
+aws-robomaker-small-house-world:hokuyo_go:hokuyo_plus
 -DCATKIN_DEVEL_PREFIX=/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/devel -DCMAKE_INSTALL_PREFIX=/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/install -G Unix Makefiles
