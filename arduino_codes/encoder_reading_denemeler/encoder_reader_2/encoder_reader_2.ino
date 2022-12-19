@@ -4,7 +4,7 @@ int count =0;
 int A;
 int B;
 int state;
-int statep;
+int statep=3;
 void setup() {
   Serial.begin(9600);
   pinMode(2, INPUT);
@@ -16,7 +16,7 @@ void setup() {
 }
 void loop(){
   angle=count/10.36;
-    Serial.println( angle );
+    Serial.println( count );
 }
   
 void Achange() //these functions are for finding the encoder counts
@@ -33,28 +33,29 @@ void Achange() //these functions are for finding the encoder counts
   {
     case 1:
     {
-      if (statep == 2) count++;
+      //if (statep == 2) count++;
       if (statep == 4) count--;
       break;
     }
     case 2:
     {
-      if (statep == 1) count--;
-      if (statep == 3) count++;
+   //   if (statep == 1) count--;
+    //  if (statep == 3) count++;
       break;
     }
     case 3:
+   {
+   //   if (statep == 2) count --;
+  //    if (statep == 4) count ++;
+     break;
+   }
+   default:
     {
-      if (statep == 2) count --;
-      if (statep == 4) count ++;
-      break;
-    }
-    default:
-    {
-      if (statep == 1) count++;
-      if (statep == 3) count--;
-    }
-  }
+      //if (statep == 1) count++;
+    //  if (statep == 3) count--;
+    break;
+   }
+ }
  statep = state;
 
 }
@@ -74,26 +75,31 @@ void Bchange()
     case 1:
     {
       if (statep == 2) count++;
-      if (statep == 4) count--;
+    //  if (statep == 4) count--;
       break;
     }
     case 2:
     {
-      if (statep == 1) count--;
-      if (statep == 3) count++;
+     // if (statep == 1) count--;
+     // if (statep == 3) count++;
       break;
     }
     case 3:
     {
-      if (statep == 2) count --;
-      if (statep == 4) count ++;
+    //  if (statep == 2) count --;
+     // if (statep == 4) count ++;
       break;
+    }
+    case 4:
+    {
+    //  if (statep == 1) count++;
+    //  if (statep == 3) count--;
+    break;
     }
     default:
     {
-      if (statep == 1) count++;
-      if (statep == 3) count--;
-    }
+      break;
+      }
   }
 statep = state;
   

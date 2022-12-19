@@ -22,7 +22,7 @@ interrupt service routines.
 #define REFRESH_MS  50
 
 // Main serial data connection to computer.
-#define BAUD_RATE   115200
+#define BAUD_RATE   9600
 
 // Encoder signal line states
 volatile boolean state_a = 0;
