@@ -134,6 +134,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/aws-robomaker-small-house-world/cmake_install.cmake")
   include("/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/hokuyo_plus/cmake_install.cmake")
   include("/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/hokuyo_go/cmake_install.cmake")
+  include("/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/gazebo_sim/cmake_install.cmake")
 
 endif()
 

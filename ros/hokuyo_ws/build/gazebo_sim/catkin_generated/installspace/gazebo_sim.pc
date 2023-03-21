@@ -1,0 +1,8 @@
+prefix=/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/install
+
+Name: gazebo_sim
+Description: Description of gazebo_sim
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: urdf roscpp std_msgs genmsg geometry_msgs

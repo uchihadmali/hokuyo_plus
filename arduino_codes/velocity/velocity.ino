@@ -1,7 +1,9 @@
-#include <util/atomic.h> // For the ATOMIC_BLOCK macro
+#include <Encoder.h>
 
 #define ENCA 2 // GREEN
 #define ENCB 21 // PURPLE
+
+Encoder myEnc(ENCA, ENCB);
 
 //motor parameters
 int directionPin = 12;
@@ -10,10 +12,11 @@ int brakePin = 9;
 double volt=0;
 
 //boolean to switch direction
-bool directionState ;
+bool direction_default = false;
+bool directionState;
 
 //encoder parameters
-volatile int posi = 0; 
+long pos = 0; 
 
 //pid parameters
 double pidTerm;
@@ -28,32 +31,46 @@ long prevT = 0;
 double control_input=0;
 
 //PID constants
-double Kp=0.1;
+double Kp=0.05;
 double Ki=0.0;
 double Kd=0;
 
 //reference
-int vel_ref=5; //angle per second (alt sınır 2, üst sınır 200)
+double vel_ref=2; //angle per second (alt sınır 2, üst sınır 200)
 
 void setup() {
   Serial.begin(9600);
+  Serial.println("Encoder Reading:");
   pinMode(directionPin, OUTPUT);
   pinMode(pwmPin, OUTPUT);
   pinMode(brakePin, OUTPUT);
-  pinMode(ENCA,INPUT);
-  pinMode(ENCB,INPUT);
-  attachInterrupt(digitalPinToInterrupt(ENCA),readEncoder,RISING);
 }
 
 void loop() {
   //position update
-  int pos = 0; 
-  ATOMIC_BLOCK(ATOMIC_RESTORESTATE) {
-    pos = posi;
+  long newPos;
+  newPos = myEnc.read();
+  if (newPos!= pos) {
+    Serial.print("position = ");
+    Serial.print(pos);
+    Serial.println();
+    pos = newPos;
+  }
+  
+  //position communication with pc
+  if (Serial.available()) {
+    Serial.read();
+    Serial.println("Reset encoders");
+    myEnc.write(0);
   }
 
-  //position communication with pc
-  Serial.println(pos);
+  if(pos*0.09<-30 && vel_ref<0){
+    vel_ref=-vel_ref;
+  }
+
+  if(pos*0.09>45 && vel_ref>0){
+    vel_ref=-vel_ref;
+  }
 
   //pid calculation
   PID_calculation();
@@ -64,31 +81,36 @@ void loop() {
 }
 
 void set_motor(){
-  directionState=false;
   volt=volt+pidTerm;
   if(volt<0){
-    directionState=true;
+    directionState=!direction_default;
   }
+  else{
+    directionState=direction_default;
+    }
   control_input=abs(volt);
   if(control_input>255){
     control_input=255;
   }
+  if(control_input<30){
+    control_input=0;
+    }
+  //set the direction
+  if(directionState){
+    digitalWrite(directionPin, HIGH);
+  }
+  else{
+    digitalWrite(directionPin, LOW);
+  }
+  
+  //set speed
   analogWrite(pwmPin,control_input);
 }
 
-void readEncoder(){
-  int b = digitalRead(ENCB);
-  if(b > 0){
-    posi++;
-  }
-  else{
-    posi--;
-  }
-}
 
 void PID_calculation(){
 
-  angle=(posi*0.36); //pos to angle
+  angle=(pos*0.09); //pos to angle
   
   // time difference
   long currT = micros();

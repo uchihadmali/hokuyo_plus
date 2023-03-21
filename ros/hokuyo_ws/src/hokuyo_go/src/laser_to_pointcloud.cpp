@@ -32,9 +32,16 @@ int a=1;
 int b=0;
 int d1=0.05;
 int d2=0.1;
+float d_1=0.114;
+float d_2=0.02845;
+float l_1=0.045;
+float l_2=0.075;
 float xx;
 float yy;
 float zz;
+float e_x,e_y,e_z;
+float start_angle;
+
 
 //declaring the lasercan and pointcloud objects
 sensor_msgs::LaserScan last_laser;
@@ -57,9 +64,12 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
         a++;
     for(int i=0; i<512; i++){
 
-            std::cout << i << "scan: " << laser_scan[i] << std::endl;
+    //        std::cout << i << "scan: " << laser_scan[i] << std::endl;
+             // ROS_INFO("scan %d : %f", i, laser_scan[i]);
 
         }
+    
+    
 
     }
 
@@ -78,14 +88,25 @@ void encoCallback(const sensor_msgs::JointState::ConstPtr& msg)
 
     //angle = msg->data;
     angle = msg->position[1];
-    cout<< angle;
-    angle= (angle/180)*M_PI;
+    ROS_INFO("angle: %f",angle);
+    //ROS_INFO("cos angle: %f",cos(angle));
+    //cout<< angle;
+    //angle= (angle/180)*M_PI;
     
     panangle= msg->position[0];
-    panangle=(panangle/180)* M_PI;
+    //panangle=(panangle/180)* M_PI;
+    ROS_INFO("pan angle: %f",panangle);
+    
+    //endpoint
+    e_x= l_1*sin(panangle)*sin(angle)+l_2*cos(panangle);
+    e_y= -l_1*cos(panangle)*sin(angle)+l_2*sin(panangle)-d_2;
+    e_z= l_1*cos(angle)+d_1;
+                
+    //ROS_INFO("endpoint: (%f,%f,%f) ", e_x,e_y,e_z);
+    //ctn=156;
 
 
-   if( fabs(angle-lastangle)>=(5.5*M_PI)/180 || fabs(panangle-lastpan)>=(23*M_PI)/180 ){     //if(fabs(angle-lastangle)>0.01){
+   //if( fabs(angle-lastangle)>=(5.5*M_PI)/180 || fabs(panangle-lastpan)>=(23*M_PI)/180 ){     //if(fabs(angle-lastangle)>0.01){
         if(ctn<156){
 
             scanSize= (int)laser_scan.size();
@@ -99,11 +120,11 @@ void encoCallback(const sensor_msgs::JointState::ConstPtr& msg)
             cloud_out.fields[0].datatype = sensor_msgs::PointField::FLOAT32;
             cloud_out.fields[0].count = 1;
             cloud_out.fields[1].name = "y";
-            cloud_out.fields[1].offset = 4;
+            cloud_out.fields[1].offset = 4; //4
             cloud_out.fields[1].datatype = sensor_msgs::PointField::FLOAT32;
             cloud_out.fields[1].count = 1;
             cloud_out.fields[2].name = "z";
-            cloud_out.fields[2].offset = 8;
+            cloud_out.fields[2].offset = 8; //8
             cloud_out.fields[2].datatype = sensor_msgs::PointField::FLOAT32;
             cloud_out.fields[2].count = 1;
 
@@ -125,28 +146,71 @@ void encoCallback(const sensor_msgs::JointState::ConstPtr& msg)
            //     x[i+(ctn*scanSize)] = x[i+(ctn*scanSize)]*cos(panangle)+z[i+(ctn*scanSize)]*sin(panangle);
            //     z[i+(ctn*scanSize)] = -x[i+(ctn*scanSize)]*sin(panangle)+z[i+(ctn*scanSize)]*cos(panangle);
 
-                xx = -1* laser_scan[i] * cos( laser_increment*i);
-                yy = laser_scan[i]* sin(laser_increment*i)*cos(panangle);
-                zz = -1* laser_scan[i]* sin(laser_increment*i)*sin(panangle);
-                x[i+(ctn*scanSize)] = cos(panangle)*xx + sin(panangle)*sin(angle)*(yy-d1)+sin(panangle)*cos(angle)*(zz+d2);
-                y[i+(ctn*scanSize)] = cos(angle)*(yy-d1)-sin(angle)*(zz+d2);
-                z[i+(ctn*scanSize)] = -sin(panangle)*xx+ cos(panangle)*sin(angle)*(yy-d1) + cos(panangle)*cos(angle)*(zz+d2);
+           //     xx = -1* laser_scan[i] * cos( laser_increment*i);
+           //     yy = laser_scan[i]* sin(laser_increment*i)*cos(panangle);
+           //     zz = -1* laser_scan[i]* sin(laser_increment*i)*sin(panangle);
+           //     x[i+(ctn*scanSize)] = cos(panangle)*xx + sin(panangle)*sin(angle)*(yy-d1)+sin(panangle)*cos(angle)*(zz+d2);
+           //     y[i+(ctn*scanSize)] = cos(angle)*(yy-d1)-sin(angle)*(zz+d2);
+           //     z[i+(ctn*scanSize)] = -sin(panangle)*xx+ cos(panangle)*sin(angle)*(yy-d1) + cos(panangle)*cos(angle)*(zz+d2);
+           
+           //     Kinematics
+                /* 
+                xx= laser_scan[i]* cos(laser_increment*i);
+                yy= laser_scan[i]* sin(laser_increment*i);
+                zz= 0;
+                x[i+(ctn*scanSize)]=xx*cos(panangle)*cos(angle)+
+                                    yy*cos(panangle)*sin(angle)+zz*sin(panangle)+
+                                    l_1*cos(panangle)*sin(angle)-l_2*cos(panangle)*cos(angle);
+                y[i+(ctn*scanSize)]=xx*sin(panangle)*cos(angle)+
+                                    yy*sin(panangle)*sin(angle)-zz*cos(panangle)+
+                                    l_1*sin(panangle)*sin(angle)-l_2*sin(panangle)*cos(angle);
+                z[i+(ctn*scanSize)]=-xx*sin(angle)+yy*cos(angle)+l_1*cos(angle)-l_2*sin(angle)+d_1;
+                
+                */
+                start_angle=-2.094;
+                yy= laser_scan[i]*sin(laser_increment*i+start_angle);
+                xx= laser_scan[i]*cos(laser_increment*i+start_angle);
+                zz= 0;
+                x[i]=xx*cos(panangle)-
+                                    yy*sin(panangle)*cos(angle)+zz*sin(panangle)*sin(angle)+
+                                    l_1*sin(panangle)*sin(angle)+l_2*cos(panangle);
+                                    
+                y[i]=xx*sin(panangle)+
+                                    yy*cos(panangle)*cos(angle)-zz*cos(panangle)*sin(angle)-
+                                    l_1*cos(panangle)*sin(angle)+l_2*sin(panangle)-d_2;
+                z[i]=yy*sin(angle)+zz*cos(angle)+l_1*cos(angle)+d_1;
+                
+                
+                
+                
+     
+                
+                
 
-                //std::cout << "scan: " << laser_scan[i] << std::endl;
-                std::cout << "ctn: " << ctn << std::endl;
+           //     //std::cout << "scan: " << laser_scan[i] << std::endl;
+                //std::cout << "ctn: " << ctn << std::endl;
+                //ROS_INFO("ctn: %d ", ctn);
                 //std::cout << "pan: " << (panangle*180)/M_PI << std::endl;
                 //std::cout << "angle: " << (angle*180)/M_PI << std::endl;
-                std::cout << "z: " << z[i+(ctn*scanSize)] << std::endl;
+                //std::cout << "z: " << z[i+(ctn*scanSize)] << std::endl;
+                 //ROS_INFO("z: %f ", z[i+(ctn*scanSize)]);
 
                 float *pstep = (float*)&cloud_out.data[count * cloud_out.point_step];
 
+                /*
                 pstep[0] = y[i+(ctn*scanSize)];
                 pstep[1] = x[i+(ctn*scanSize)];
                 pstep[2] = z[i+(ctn*scanSize)];
-
+                */
+                
+                pstep[0] = x[i];
+                pstep[1] = y[i];
+                pstep[2] = z[i];
                 ++count;
 
             }
+            
+            //ctn++;
         }
 
         if(ctn==154){
@@ -187,7 +251,7 @@ void encoCallback(const sensor_msgs::JointState::ConstPtr& msg)
         }
 
         ctn++;
-    }
+    //}
     lastangle=angle;
     lastpan=panangle;
       //std::cout << "angle: " <<   angle << std::endl;
@@ -203,9 +267,9 @@ int main(int argc, char **argv)
 
  
   //subscribing topics
-  ros::Subscriber sub = n.subscribe("joint_states", 1, encoCallback);
+  ros::Subscriber sub = n.subscribe("/joint_states", 1, encoCallback);
   //ros::Subscriber sub2 = n.subscribe("pan", 1, panCallback);
-  ros::Subscriber laserSub = n.subscribe("hokuyo/scan", 1, laserCallback);
+  ros::Subscriber laserSub = n.subscribe("/hokuyo/scan", 1, laserCallback);
   //publishing resulting point cloud
   ros::Publisher pclPub = n.advertise<sensor_msgs::PointCloud2> ("output", 1);
 
@@ -215,7 +279,7 @@ int main(int argc, char **argv)
       //points.data.assign();
 
 
-      cloud_out.header.frame_id = "laser";
+      cloud_out.header.frame_id = "taban";
       cloud_out.header.stamp = last_laser.header.stamp;
       cloud_out.header.seq = cloud_out.header.seq+1;
 

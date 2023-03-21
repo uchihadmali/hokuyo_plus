@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0.2)
+cmake_minimum_required(VERSION 3.1.3)
 project(hokuyo_go)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
@@ -7,6 +7,7 @@ project(hokuyo_go)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
+
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
@@ -14,9 +15,11 @@ find_package(catkin REQUIRED COMPONENTS
   pcl_conversions
   sensor_msgs
 )
-add_executable(laser_to_pointcloud src/laser_to_pointcloud.cpp)
-target_link_libraries(laser_to_pointcloud ${catkin_LIBRARIES} ${Boost_LIBRARIES})
-install(TARGETS laser_to_pointcloud DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+
+catkin_package(
+  CATKIN_DEPENDS roscpp rospy std_msgs
+    
+)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -107,13 +110,6 @@ install(TARGETS laser_to_pointcloud DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION
 ## LIBRARIES: libraries you create in this project that dependent projects also need
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
-catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES hokuyo_go
-#  CATKIN_DEPENDS roscpp rospy std_msgs
-#  DEPENDS system_lib
-)
-
 ###########
 ## Build ##
 ###########
@@ -209,3 +205,12 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+
+add_executable(laser_to_pointcloud src/laser_to_pointcloud.cpp)
+target_link_libraries(laser_to_pointcloud ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+install(TARGETS laser_to_pointcloud DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+
+#add_executable(state_detect src/state_detect.cpp)
+#target_link_libraries(state_detect ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+#install(TARGETS state_detect DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+

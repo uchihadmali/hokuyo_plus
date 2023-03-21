@@ -97,17 +97,6 @@ void loop() {
   //position communication with pc
   Serial.println(pos2);
 
-  //changing velocity if returning point is reached
-  if(pos==125*vel1){
-    vel_ref=-vel_ref;
-    vel1=-vel1;
-  }
-
-  if(pos2==60*vel2){
-   vel_ref2=-vel_ref2;
-   vel2=-vel2; 
-  }
-
 
   //pid calculation
   PID_calculation();
