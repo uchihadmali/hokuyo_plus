@@ -1,8 +1,12 @@
+//This code is for moving the motors of the pan tilt mechanism.
 #include <ros/ros.h>
+#include <math.h>
 #include <geometry_msgs/Twist.h>
 #include <sensor_msgs/JointState.h>
 #include <iostream>
 #include <fstream>
+#include <trajectory_msgs/JointTrajectory.h>
+#include <trajectory_msgs/JointTrajectoryPoint.h>
 
 
 #define PI 3.14159265359
@@ -10,19 +14,20 @@
 double angle=0.0;
 double angle_goal=0.8727;
 double panangle=0.0;
-double panangle_goal=3.1416;
+double panangle_goal=0;
 double angle_vel=0.0;
 double panangle_vel=0.0;
 double goal_reached_angle=0;
 double goal_reached_panangle=0;
-double tolerance=0.001;
+double tolerance=0.1;
 double max_vel_angle=2*PI/180;
 double max_vel_panangle=2*PI/180;
+double k=1;
 void compare(){
-    if((angle-angle_goal)^2<tolerance){
+    if(abs(angle-angle_goal)<tolerance){
     goal_reached_angle=1;
     }
-    if((panangle-panangle_goal)^2<tolerance){
+    if(abs(panangle-panangle_goal)<tolerance){
     goal_reached_panangle=1;
     }
 }
@@ -49,8 +54,7 @@ void encoCallback(const sensor_msgs::JointState::ConstPtr& msg){
     }
     
     
-    //calculating APF velocities
-    
+    //calculating velocities
     
     
     
@@ -62,10 +66,37 @@ int main(int argc,char** argv){
     ros::NodeHandle nh;
     
     //subscribing topics
-    ros::Subscriber sub = nh.subscribe("/joint_states", 1, encoCallback);
+    ros::Subscriber sub = nh.subscribe("/joint_states", 1000, encoCallback);
     
     //publisher for velocity at gazebo
-    ros::Publisher vel_pub = nh.advertise<geometry_msgs::Twist>("/cmd_vel", 1000);
+    ros::Publisher vel_pub = nh.advertise<trajectory_msgs::JointTrajectory>("/gazebo_ros_control/command", 1000);
     
+    trajectory_msgs::JointTrajectory joint_traj;
+    trajectory_msgs::JointTrajectoryPoint traj_point;
+    joint_traj.joint_names = {"pan_joint", "tilt_joint"};
+    
+    
+    // Create a joint trajectory point
+    //traj_point.time_from_start = ros::Duration(2.0); // 2 seconds
+    //traj_point.positions = {1.0, 2.0};
 
+    // Add the joint trajectory point to the joint trajectory message
+    //joint_traj.points.push_back(traj_point);
+    
+    
+    ros::Rate loop(10);
+    while(ros::ok()){
+      joint_traj.header.stamp = ros::Time::now();
+      traj_point.time_from_start = ros::Duration(2.0); // 2 seconds
+      traj_point.positions = {panangle_goal, angle_goal};
+      //joint_traj.points.positions= {angle_goal, panangle_goal};
+      joint_traj.points.clear();
+      joint_traj.points.push_back(traj_point);
+
+      vel_pub.publish(joint_traj);
+
+      ros::spinOnce();
+      loop.sleep();
+
+    }
 }

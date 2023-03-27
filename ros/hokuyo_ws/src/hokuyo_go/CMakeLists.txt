@@ -210,6 +210,10 @@ add_executable(laser_to_pointcloud src/laser_to_pointcloud.cpp)
 target_link_libraries(laser_to_pointcloud ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 install(TARGETS laser_to_pointcloud DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 
+add_executable(vel_publisher src/vel_publisher.cpp)
+target_link_libraries(vel_publisher ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+install(TARGETS vel_publisher DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+
 #add_executable(state_detect src/state_detect.cpp)
 #target_link_libraries(state_detect ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 #install(TARGETS state_detect DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})

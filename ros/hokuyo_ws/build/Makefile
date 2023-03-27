@@ -1169,43 +1169,17 @@ dynamic_reconfigure_gencfg/fast:
 .PHONY : dynamic_reconfigure_gencfg/fast
 
 #=============================================================================
-# Target rules for targets named laser_to_pointcloud
+# Target rules for targets named pcl_msgs_generate_messages_eus
 
 # Build rule for target.
-laser_to_pointcloud: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 laser_to_pointcloud
-.PHONY : laser_to_pointcloud
+pcl_msgs_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pcl_msgs_generate_messages_eus
+.PHONY : pcl_msgs_generate_messages_eus
 
 # fast build rule for target.
-laser_to_pointcloud/fast:
-	$(MAKE) -f hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/build.make hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/build
-.PHONY : laser_to_pointcloud/fast
-
-#=============================================================================
-# Target rules for targets named pcl_msgs_generate_messages_nodejs
-
-# Build rule for target.
-pcl_msgs_generate_messages_nodejs: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 pcl_msgs_generate_messages_nodejs
-.PHONY : pcl_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-pcl_msgs_generate_messages_nodejs/fast:
-	$(MAKE) -f hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/build.make hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/build
-.PHONY : pcl_msgs_generate_messages_nodejs/fast
-
-#=============================================================================
-# Target rules for targets named pcl_msgs_generate_messages_py
-
-# Build rule for target.
-pcl_msgs_generate_messages_py: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 pcl_msgs_generate_messages_py
-.PHONY : pcl_msgs_generate_messages_py
-
-# fast build rule for target.
-pcl_msgs_generate_messages_py/fast:
-	$(MAKE) -f hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/build.make hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/build
-.PHONY : pcl_msgs_generate_messages_py/fast
+pcl_msgs_generate_messages_eus/fast:
+	$(MAKE) -f hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/build.make hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/build
+.PHONY : pcl_msgs_generate_messages_eus/fast
 
 #=============================================================================
 # Target rules for targets named pcl_msgs_generate_messages_lisp
@@ -1221,17 +1195,56 @@ pcl_msgs_generate_messages_lisp/fast:
 .PHONY : pcl_msgs_generate_messages_lisp/fast
 
 #=============================================================================
-# Target rules for targets named pcl_msgs_generate_messages_eus
+# Target rules for targets named pcl_msgs_generate_messages_py
 
 # Build rule for target.
-pcl_msgs_generate_messages_eus: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 pcl_msgs_generate_messages_eus
-.PHONY : pcl_msgs_generate_messages_eus
+pcl_msgs_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pcl_msgs_generate_messages_py
+.PHONY : pcl_msgs_generate_messages_py
 
 # fast build rule for target.
-pcl_msgs_generate_messages_eus/fast:
-	$(MAKE) -f hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/build.make hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/build
-.PHONY : pcl_msgs_generate_messages_eus/fast
+pcl_msgs_generate_messages_py/fast:
+	$(MAKE) -f hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/build.make hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/build
+.PHONY : pcl_msgs_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named pcl_msgs_generate_messages_nodejs
+
+# Build rule for target.
+pcl_msgs_generate_messages_nodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pcl_msgs_generate_messages_nodejs
+.PHONY : pcl_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+pcl_msgs_generate_messages_nodejs/fast:
+	$(MAKE) -f hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/build.make hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/build
+.PHONY : pcl_msgs_generate_messages_nodejs/fast
+
+#=============================================================================
+# Target rules for targets named laser_to_pointcloud
+
+# Build rule for target.
+laser_to_pointcloud: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 laser_to_pointcloud
+.PHONY : laser_to_pointcloud
+
+# fast build rule for target.
+laser_to_pointcloud/fast:
+	$(MAKE) -f hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/build.make hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/build
+.PHONY : laser_to_pointcloud/fast
+
+#=============================================================================
+# Target rules for targets named vel_publisher
+
+# Build rule for target.
+vel_publisher: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 vel_publisher
+.PHONY : vel_publisher
+
+# fast build rule for target.
+vel_publisher/fast:
+	$(MAKE) -f hokuyo_go/CMakeFiles/vel_publisher.dir/build.make hokuyo_go/CMakeFiles/vel_publisher.dir/build
+.PHONY : vel_publisher/fast
 
 #=============================================================================
 # Target rules for targets named pcl_msgs_generate_messages_cpp
@@ -1466,11 +1479,12 @@ help:
 	@echo "... geometry_msgs_generate_messages_nodejs"
 	@echo "... dynamic_reconfigure_generate_messages_eus"
 	@echo "... dynamic_reconfigure_gencfg"
-	@echo "... laser_to_pointcloud"
-	@echo "... pcl_msgs_generate_messages_nodejs"
-	@echo "... pcl_msgs_generate_messages_py"
-	@echo "... pcl_msgs_generate_messages_lisp"
 	@echo "... pcl_msgs_generate_messages_eus"
+	@echo "... pcl_msgs_generate_messages_lisp"
+	@echo "... pcl_msgs_generate_messages_py"
+	@echo "... pcl_msgs_generate_messages_nodejs"
+	@echo "... laser_to_pointcloud"
+	@echo "... vel_publisher"
 	@echo "... pcl_msgs_generate_messages_cpp"
 	@echo "... run_tests_gazebo_sim"
 	@echo "... gazebo_sim"

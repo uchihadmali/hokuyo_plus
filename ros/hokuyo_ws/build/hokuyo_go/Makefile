@@ -56,17 +56,60 @@ CMAKE_BINARY_DIR = /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
 
-# Special rule for the target install/local
-install/local/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local/fast
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
 
 # Special rule for the target install
 install: preinstall
@@ -80,60 +123,17 @@ install/fast: preinstall/fast
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
 
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
-
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip/fast
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -168,49 +168,19 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/rule:
-	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f CMakeFiles/Makefile2 hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/rule
-.PHONY : hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/rule
+hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/rule:
+	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f CMakeFiles/Makefile2 hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/rule
+.PHONY : hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/rule
 
 # Convenience name for target.
-laser_to_pointcloud: hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/rule
+pcl_msgs_generate_messages_eus: hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/rule
 
-.PHONY : laser_to_pointcloud
+.PHONY : pcl_msgs_generate_messages_eus
 
 # fast build rule for target.
-laser_to_pointcloud/fast:
-	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/build.make hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/build
-.PHONY : laser_to_pointcloud/fast
-
-# Convenience name for target.
-hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f CMakeFiles/Makefile2 hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/rule
-.PHONY : hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-pcl_msgs_generate_messages_nodejs: hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : pcl_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-pcl_msgs_generate_messages_nodejs/fast:
-	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/build.make hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/build
-.PHONY : pcl_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/rule:
-	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f CMakeFiles/Makefile2 hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/rule
-.PHONY : hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-pcl_msgs_generate_messages_py: hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/rule
-
-.PHONY : pcl_msgs_generate_messages_py
-
-# fast build rule for target.
-pcl_msgs_generate_messages_py/fast:
-	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/build.make hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/build
-.PHONY : pcl_msgs_generate_messages_py/fast
+pcl_msgs_generate_messages_eus/fast:
+	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/build.make hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/build
+.PHONY : pcl_msgs_generate_messages_eus/fast
 
 # Convenience name for target.
 hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_lisp.dir/rule:
@@ -228,19 +198,64 @@ pcl_msgs_generate_messages_lisp/fast:
 .PHONY : pcl_msgs_generate_messages_lisp/fast
 
 # Convenience name for target.
-hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/rule:
-	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f CMakeFiles/Makefile2 hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/rule
-.PHONY : hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/rule
+hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/rule:
+	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f CMakeFiles/Makefile2 hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/rule
+.PHONY : hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/rule
 
 # Convenience name for target.
-pcl_msgs_generate_messages_eus: hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/rule
+pcl_msgs_generate_messages_py: hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/rule
 
-.PHONY : pcl_msgs_generate_messages_eus
+.PHONY : pcl_msgs_generate_messages_py
 
 # fast build rule for target.
-pcl_msgs_generate_messages_eus/fast:
-	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/build.make hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/build
-.PHONY : pcl_msgs_generate_messages_eus/fast
+pcl_msgs_generate_messages_py/fast:
+	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/build.make hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/build
+.PHONY : pcl_msgs_generate_messages_py/fast
+
+# Convenience name for target.
+hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f CMakeFiles/Makefile2 hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/rule
+.PHONY : hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+pcl_msgs_generate_messages_nodejs: hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : pcl_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+pcl_msgs_generate_messages_nodejs/fast:
+	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/build.make hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/build
+.PHONY : pcl_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/rule:
+	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f CMakeFiles/Makefile2 hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/rule
+.PHONY : hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/rule
+
+# Convenience name for target.
+laser_to_pointcloud: hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/rule
+
+.PHONY : laser_to_pointcloud
+
+# fast build rule for target.
+laser_to_pointcloud/fast:
+	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/build.make hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/build
+.PHONY : laser_to_pointcloud/fast
+
+# Convenience name for target.
+hokuyo_go/CMakeFiles/vel_publisher.dir/rule:
+	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f CMakeFiles/Makefile2 hokuyo_go/CMakeFiles/vel_publisher.dir/rule
+.PHONY : hokuyo_go/CMakeFiles/vel_publisher.dir/rule
+
+# Convenience name for target.
+vel_publisher: hokuyo_go/CMakeFiles/vel_publisher.dir/rule
+
+.PHONY : vel_publisher
+
+# fast build rule for target.
+vel_publisher/fast:
+	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f hokuyo_go/CMakeFiles/vel_publisher.dir/build.make hokuyo_go/CMakeFiles/vel_publisher.dir/build
+.PHONY : vel_publisher/fast
 
 # Convenience name for target.
 hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/rule:
@@ -284,28 +299,59 @@ src/laser_to_pointcloud.cpp.s:
 	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/build.make hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/src/laser_to_pointcloud.cpp.s
 .PHONY : src/laser_to_pointcloud.cpp.s
 
+src/vel_publisher.o: src/vel_publisher.cpp.o
+
+.PHONY : src/vel_publisher.o
+
+# target to build an object file
+src/vel_publisher.cpp.o:
+	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f hokuyo_go/CMakeFiles/vel_publisher.dir/build.make hokuyo_go/CMakeFiles/vel_publisher.dir/src/vel_publisher.cpp.o
+.PHONY : src/vel_publisher.cpp.o
+
+src/vel_publisher.i: src/vel_publisher.cpp.i
+
+.PHONY : src/vel_publisher.i
+
+# target to preprocess a source file
+src/vel_publisher.cpp.i:
+	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f hokuyo_go/CMakeFiles/vel_publisher.dir/build.make hokuyo_go/CMakeFiles/vel_publisher.dir/src/vel_publisher.cpp.i
+.PHONY : src/vel_publisher.cpp.i
+
+src/vel_publisher.s: src/vel_publisher.cpp.s
+
+.PHONY : src/vel_publisher.s
+
+# target to generate assembly for a file
+src/vel_publisher.cpp.s:
+	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f hokuyo_go/CMakeFiles/vel_publisher.dir/build.make hokuyo_go/CMakeFiles/vel_publisher.dir/src/vel_publisher.cpp.s
+.PHONY : src/vel_publisher.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... install/local"
-	@echo "... install"
-	@echo "... list_install_components"
-	@echo "... rebuild_cache"
-	@echo "... edit_cache"
-	@echo "... test"
-	@echo "... laser_to_pointcloud"
-	@echo "... pcl_msgs_generate_messages_nodejs"
-	@echo "... install/strip"
-	@echo "... pcl_msgs_generate_messages_py"
-	@echo "... pcl_msgs_generate_messages_lisp"
 	@echo "... pcl_msgs_generate_messages_eus"
+	@echo "... pcl_msgs_generate_messages_lisp"
+	@echo "... pcl_msgs_generate_messages_py"
+	@echo "... pcl_msgs_generate_messages_nodejs"
+	@echo "... laser_to_pointcloud"
+	@echo "... install/strip"
+	@echo "... vel_publisher"
+	@echo "... test"
+	@echo "... edit_cache"
+	@echo "... rebuild_cache"
+	@echo "... list_install_components"
 	@echo "... pcl_msgs_generate_messages_cpp"
+	@echo "... install"
+	@echo "... install/local"
 	@echo "... src/laser_to_pointcloud.o"
 	@echo "... src/laser_to_pointcloud.i"
 	@echo "... src/laser_to_pointcloud.s"
+	@echo "... src/vel_publisher.o"
+	@echo "... src/vel_publisher.i"
+	@echo "... src/vel_publisher.s"
 .PHONY : help
 
 

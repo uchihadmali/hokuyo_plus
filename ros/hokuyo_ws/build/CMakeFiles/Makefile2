@@ -260,6 +260,7 @@ gtest/googletest/clean: gtest/googletest/CMakeFiles/gtest.dir/clean
 
 # Recursive "all" directory target.
 hokuyo_go/all: hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/all
+hokuyo_go/all: hokuyo_go/CMakeFiles/vel_publisher.dir/all
 
 .PHONY : hokuyo_go/all
 
@@ -269,11 +270,12 @@ hokuyo_go/preinstall:
 .PHONY : hokuyo_go/preinstall
 
 # Recursive "clean" directory target.
-hokuyo_go/clean: hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/clean
-hokuyo_go/clean: hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/clean
-hokuyo_go/clean: hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/clean
-hokuyo_go/clean: hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_lisp.dir/clean
 hokuyo_go/clean: hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/clean
+hokuyo_go/clean: hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_lisp.dir/clean
+hokuyo_go/clean: hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/clean
+hokuyo_go/clean: hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/clean
+hokuyo_go/clean: hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/clean
+hokuyo_go/clean: hokuyo_go/CMakeFiles/vel_publisher.dir/clean
 hokuyo_go/clean: hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/clean
 
 .PHONY : hokuyo_go/clean
@@ -2377,85 +2379,31 @@ aws-robomaker-small-house-world/CMakeFiles/dynamic_reconfigure_gencfg.dir/clean:
 .PHONY : aws-robomaker-small-house-world/CMakeFiles/dynamic_reconfigure_gencfg.dir/clean
 
 #=============================================================================
-# Target rules for target hokuyo_go/CMakeFiles/laser_to_pointcloud.dir
+# Target rules for target hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir
 
 # All Build rule for target.
-hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/all:
-	$(MAKE) -f hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/build.make hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/depend
-	$(MAKE) -f hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/build.make hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles --progress-num=17,18 "Built target laser_to_pointcloud"
-.PHONY : hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/all
+hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/all:
+	$(MAKE) -f hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/build.make hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/depend
+	$(MAKE) -f hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/build.make hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles --progress-num= "Built target pcl_msgs_generate_messages_eus"
+.PHONY : hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/all
 
 # Build rule for subdir invocation for target.
-hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/all
+hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles 0
-.PHONY : hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/rule
+	$(MAKE) -f CMakeFiles/Makefile2 hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles 0
+.PHONY : hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/rule
 
 # Convenience name for target.
-laser_to_pointcloud: hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/rule
+pcl_msgs_generate_messages_eus: hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/rule
 
-.PHONY : laser_to_pointcloud
-
-# clean rule for target.
-hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/clean:
-	$(MAKE) -f hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/build.make hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/clean
-.PHONY : hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/clean
-
-#=============================================================================
-# Target rules for target hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir
-
-# All Build rule for target.
-hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/all:
-	$(MAKE) -f hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/build.make hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/depend
-	$(MAKE) -f hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/build.make hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles --progress-num= "Built target pcl_msgs_generate_messages_nodejs"
-.PHONY : hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/all
-
-# Build rule for subdir invocation for target.
-hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles 0
-.PHONY : hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-pcl_msgs_generate_messages_nodejs: hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : pcl_msgs_generate_messages_nodejs
+.PHONY : pcl_msgs_generate_messages_eus
 
 # clean rule for target.
-hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/clean:
-	$(MAKE) -f hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/build.make hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/clean
-.PHONY : hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/clean
-
-#=============================================================================
-# Target rules for target hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir
-
-# All Build rule for target.
-hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/all:
-	$(MAKE) -f hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/build.make hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/depend
-	$(MAKE) -f hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/build.make hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles --progress-num= "Built target pcl_msgs_generate_messages_py"
-.PHONY : hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/all
-
-# Build rule for subdir invocation for target.
-hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles 0
-.PHONY : hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-pcl_msgs_generate_messages_py: hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/rule
-
-.PHONY : pcl_msgs_generate_messages_py
-
-# clean rule for target.
-hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/clean:
-	$(MAKE) -f hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/build.make hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/clean
-.PHONY : hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/clean
+hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/clean:
+	$(MAKE) -f hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/build.make hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/clean
+.PHONY : hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/clean
 
 #=============================================================================
 # Target rules for target hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_lisp.dir
@@ -2485,31 +2433,112 @@ hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_lisp.dir/clean:
 .PHONY : hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_lisp.dir/clean
 
 #=============================================================================
-# Target rules for target hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir
+# Target rules for target hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir
 
 # All Build rule for target.
-hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/all:
-	$(MAKE) -f hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/build.make hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/depend
-	$(MAKE) -f hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/build.make hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles --progress-num= "Built target pcl_msgs_generate_messages_eus"
-.PHONY : hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/all
+hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/all:
+	$(MAKE) -f hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/build.make hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/depend
+	$(MAKE) -f hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/build.make hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles --progress-num= "Built target pcl_msgs_generate_messages_py"
+.PHONY : hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/all
 
 # Build rule for subdir invocation for target.
-hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/rule: cmake_check_build_system
+hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles 0
-.PHONY : hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/rule
+.PHONY : hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/rule
 
 # Convenience name for target.
-pcl_msgs_generate_messages_eus: hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/rule
+pcl_msgs_generate_messages_py: hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/rule
 
-.PHONY : pcl_msgs_generate_messages_eus
+.PHONY : pcl_msgs_generate_messages_py
 
 # clean rule for target.
-hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/clean:
-	$(MAKE) -f hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/build.make hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/clean
-.PHONY : hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/clean
+hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/clean:
+	$(MAKE) -f hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/build.make hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/clean
+.PHONY : hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/clean
+
+#=============================================================================
+# Target rules for target hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir
+
+# All Build rule for target.
+hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/all:
+	$(MAKE) -f hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/build.make hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/depend
+	$(MAKE) -f hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/build.make hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles --progress-num= "Built target pcl_msgs_generate_messages_nodejs"
+.PHONY : hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/all
+
+# Build rule for subdir invocation for target.
+hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles 0
+.PHONY : hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+pcl_msgs_generate_messages_nodejs: hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : pcl_msgs_generate_messages_nodejs
+
+# clean rule for target.
+hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/clean:
+	$(MAKE) -f hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/build.make hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/clean
+.PHONY : hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/clean
+
+#=============================================================================
+# Target rules for target hokuyo_go/CMakeFiles/laser_to_pointcloud.dir
+
+# All Build rule for target.
+hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/all:
+	$(MAKE) -f hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/build.make hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/depend
+	$(MAKE) -f hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/build.make hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles --progress-num=17,18 "Built target laser_to_pointcloud"
+.PHONY : hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/all
+
+# Build rule for subdir invocation for target.
+hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles 0
+.PHONY : hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/rule
+
+# Convenience name for target.
+laser_to_pointcloud: hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/rule
+
+.PHONY : laser_to_pointcloud
+
+# clean rule for target.
+hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/clean:
+	$(MAKE) -f hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/build.make hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/clean
+.PHONY : hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/clean
+
+#=============================================================================
+# Target rules for target hokuyo_go/CMakeFiles/vel_publisher.dir
+
+# All Build rule for target.
+hokuyo_go/CMakeFiles/vel_publisher.dir/all:
+	$(MAKE) -f hokuyo_go/CMakeFiles/vel_publisher.dir/build.make hokuyo_go/CMakeFiles/vel_publisher.dir/depend
+	$(MAKE) -f hokuyo_go/CMakeFiles/vel_publisher.dir/build.make hokuyo_go/CMakeFiles/vel_publisher.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles --progress-num=19,20 "Built target vel_publisher"
+.PHONY : hokuyo_go/CMakeFiles/vel_publisher.dir/all
+
+# Build rule for subdir invocation for target.
+hokuyo_go/CMakeFiles/vel_publisher.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 hokuyo_go/CMakeFiles/vel_publisher.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles 0
+.PHONY : hokuyo_go/CMakeFiles/vel_publisher.dir/rule
+
+# Convenience name for target.
+vel_publisher: hokuyo_go/CMakeFiles/vel_publisher.dir/rule
+
+.PHONY : vel_publisher
+
+# clean rule for target.
+hokuyo_go/CMakeFiles/vel_publisher.dir/clean:
+	$(MAKE) -f hokuyo_go/CMakeFiles/vel_publisher.dir/build.make hokuyo_go/CMakeFiles/vel_publisher.dir/clean
+.PHONY : hokuyo_go/CMakeFiles/vel_publisher.dir/clean
 
 #=============================================================================
 # Target rules for target hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_cpp.dir

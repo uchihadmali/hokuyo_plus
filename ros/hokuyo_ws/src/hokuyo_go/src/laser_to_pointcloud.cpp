@@ -106,14 +106,14 @@ void encoCallback(const sensor_msgs::JointState::ConstPtr& msg)
     //ctn=156;
 
 
-   //if( fabs(angle-lastangle)>=(5.5*M_PI)/180 || fabs(panangle-lastpan)>=(23*M_PI)/180 ){     //if(fabs(angle-lastangle)>0.01){
-        if(ctn<156){
+   if( fabs(angle-lastangle)>=(5.5*M_PI)/18000|| fabs(panangle-lastpan)>=(23*M_PI)/18000 ){     //if(fabs(angle-lastangle)>0.01){
+        if(ctn<1000){
 
             scanSize= (int)laser_scan.size();
 
             //cloud_out.header = last_laser.header;
             cloud_out.height = 1;
-            cloud_out.width  = scanSize*156;      // scanSize*168
+            cloud_out.width  = scanSize*1000;      // scanSize*168
             cloud_out.fields.resize (3);
             cloud_out.fields[0].name = "x";
             cloud_out.fields[0].offset = 0;
@@ -210,10 +210,15 @@ void encoCallback(const sensor_msgs::JointState::ConstPtr& msg)
 
             }
             
-            //ctn++;
+            ctn++;
+        }
+        
+        else{
+        cloud_out.data.clear();
+        ctn=0;
         }
 
-        if(ctn==154){
+        if(ctn==-1){
               ofstream myfile ("example1x.txt");
               if (myfile.is_open())
               {
@@ -251,7 +256,7 @@ void encoCallback(const sensor_msgs::JointState::ConstPtr& msg)
         }
 
         ctn++;
-    //}
+    }
     lastangle=angle;
     lastpan=panangle;
       //std::cout << "angle: " <<   angle << std::endl;
@@ -267,14 +272,14 @@ int main(int argc, char **argv)
 
  
   //subscribing topics
-  ros::Subscriber sub = n.subscribe("/joint_states", 1, encoCallback);
+  ros::Subscriber sub = n.subscribe("/joint_states", 1000, encoCallback);
   //ros::Subscriber sub2 = n.subscribe("pan", 1, panCallback);
-  ros::Subscriber laserSub = n.subscribe("/hokuyo/scan", 1, laserCallback);
+  ros::Subscriber laserSub = n.subscribe("/hokuyo/scan", 1000, laserCallback);
   //publishing resulting point cloud
-  ros::Publisher pclPub = n.advertise<sensor_msgs::PointCloud2> ("output", 1);
+  ros::Publisher pclPub = n.advertise<sensor_msgs::PointCloud2> ("output", 10);
 
 
-  ros::Rate loop(2);
+  ros::Rate loop(10);
   while(ros::ok()){
       //points.data.assign();
 

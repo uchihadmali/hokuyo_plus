@@ -2,4 +2,4 @@
 source_root_dir = '/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/src'
 whitelisted_packages = ''.split(';') if '' != '' else []
 blacklisted_packages = ''.split(';') if '' != '' else []
-underlay_workspaces = '/home/mali/catkin_ws/devel;/opt/ros/noetic'.split(';') if '/home/mali/catkin_ws/devel;/opt/ros/noetic' != '' else []
+underlay_workspaces = '/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/devel;/home/mali/catkin_ws/devel;/opt/ros/noetic'.split(';') if '/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/devel;/home/mali/catkin_ws/devel;/opt/ros/noetic' != '' else []
