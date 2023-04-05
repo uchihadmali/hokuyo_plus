@@ -1247,6 +1247,19 @@ vel_publisher/fast:
 .PHONY : vel_publisher/fast
 
 #=============================================================================
+# Target rules for targets named deneme
+
+# Build rule for target.
+deneme: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 deneme
+.PHONY : deneme
+
+# fast build rule for target.
+deneme/fast:
+	$(MAKE) -f hokuyo_go/CMakeFiles/deneme.dir/build.make hokuyo_go/CMakeFiles/deneme.dir/build
+.PHONY : deneme/fast
+
+#=============================================================================
 # Target rules for targets named pcl_msgs_generate_messages_cpp
 
 # Build rule for target.
@@ -1485,6 +1498,7 @@ help:
 	@echo "... pcl_msgs_generate_messages_nodejs"
 	@echo "... laser_to_pointcloud"
 	@echo "... vel_publisher"
+	@echo "... deneme"
 	@echo "... pcl_msgs_generate_messages_cpp"
 	@echo "... run_tests_gazebo_sim"
 	@echo "... gazebo_sim"

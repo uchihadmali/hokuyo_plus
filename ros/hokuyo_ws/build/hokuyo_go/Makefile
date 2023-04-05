@@ -56,6 +56,18 @@ CMAKE_BINARY_DIR = /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
+
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
@@ -122,18 +134,6 @@ install/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -258,6 +258,21 @@ vel_publisher/fast:
 .PHONY : vel_publisher/fast
 
 # Convenience name for target.
+hokuyo_go/CMakeFiles/deneme.dir/rule:
+	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f CMakeFiles/Makefile2 hokuyo_go/CMakeFiles/deneme.dir/rule
+.PHONY : hokuyo_go/CMakeFiles/deneme.dir/rule
+
+# Convenience name for target.
+deneme: hokuyo_go/CMakeFiles/deneme.dir/rule
+
+.PHONY : deneme
+
+# fast build rule for target.
+deneme/fast:
+	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f hokuyo_go/CMakeFiles/deneme.dir/build.make hokuyo_go/CMakeFiles/deneme.dir/build
+.PHONY : deneme/fast
+
+# Convenience name for target.
 hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/rule:
 	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f CMakeFiles/Makefile2 hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/rule
 .PHONY : hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/rule
@@ -271,6 +286,33 @@ pcl_msgs_generate_messages_cpp: hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_
 pcl_msgs_generate_messages_cpp/fast:
 	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/build.make hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/build
 .PHONY : pcl_msgs_generate_messages_cpp/fast
+
+src/deneme.o: src/deneme.cpp.o
+
+.PHONY : src/deneme.o
+
+# target to build an object file
+src/deneme.cpp.o:
+	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f hokuyo_go/CMakeFiles/deneme.dir/build.make hokuyo_go/CMakeFiles/deneme.dir/src/deneme.cpp.o
+.PHONY : src/deneme.cpp.o
+
+src/deneme.i: src/deneme.cpp.i
+
+.PHONY : src/deneme.i
+
+# target to preprocess a source file
+src/deneme.cpp.i:
+	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f hokuyo_go/CMakeFiles/deneme.dir/build.make hokuyo_go/CMakeFiles/deneme.dir/src/deneme.cpp.i
+.PHONY : src/deneme.cpp.i
+
+src/deneme.s: src/deneme.cpp.s
+
+.PHONY : src/deneme.s
+
+# target to generate assembly for a file
+src/deneme.cpp.s:
+	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f hokuyo_go/CMakeFiles/deneme.dir/build.make hokuyo_go/CMakeFiles/deneme.dir/src/deneme.cpp.s
+.PHONY : src/deneme.cpp.s
 
 src/laser_to_pointcloud.o: src/laser_to_pointcloud.cpp.o
 
@@ -332,6 +374,7 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... install/local"
 	@echo "... pcl_msgs_generate_messages_eus"
 	@echo "... pcl_msgs_generate_messages_lisp"
 	@echo "... pcl_msgs_generate_messages_py"
@@ -339,13 +382,16 @@ help:
 	@echo "... laser_to_pointcloud"
 	@echo "... install/strip"
 	@echo "... vel_publisher"
+	@echo "... deneme"
 	@echo "... test"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... list_install_components"
 	@echo "... pcl_msgs_generate_messages_cpp"
 	@echo "... install"
-	@echo "... install/local"
+	@echo "... src/deneme.o"
+	@echo "... src/deneme.i"
+	@echo "... src/deneme.s"
 	@echo "... src/laser_to_pointcloud.o"
 	@echo "... src/laser_to_pointcloud.i"
 	@echo "... src/laser_to_pointcloud.s"
