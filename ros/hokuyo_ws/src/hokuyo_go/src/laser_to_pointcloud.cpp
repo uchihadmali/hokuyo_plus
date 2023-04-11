@@ -274,7 +274,7 @@ int main(int argc, char **argv)
   //subscribing topics
   ros::Subscriber sub = n.subscribe("/joint_states", 1000, encoCallback);
   //ros::Subscriber sub2 = n.subscribe("pan", 1, panCallback);
-  ros::Subscriber laserSub = n.subscribe("/hokuyo/scan", 1000, laserCallback);
+  ros::Subscriber laserSub = n.subscribe("/scan", 1000, laserCallback); //hokuyo_scan
   //publishing resulting point cloud
   ros::Publisher pclPub = n.advertise<sensor_msgs::PointCloud2> ("output", 10);
 
@@ -284,7 +284,7 @@ int main(int argc, char **argv)
       //points.data.assign();
 
 
-      cloud_out.header.frame_id = "taban";
+      cloud_out.header.frame_id = "laser";//taban
       cloud_out.header.stamp = last_laser.header.stamp;
       cloud_out.header.seq = cloud_out.header.seq+1;
 

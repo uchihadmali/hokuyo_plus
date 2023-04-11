@@ -1,5 +1,3 @@
-//Publisher kodu, çalışıor
-
 #include <ros.h>
 #include <sensor_msgs/JointState.h>
 #include <Encoder.h>
@@ -33,7 +31,7 @@ void loop() {
   pos = myEnc.read();
   
   // Update the joint values
-  joint_values[0] = pos*3.14/1980;
+  joint_values[0] = pos;
   joint_values[1] = 0.2;
 
   // Populate the joint state message
