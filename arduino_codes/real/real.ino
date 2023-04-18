@@ -33,7 +33,7 @@ void loop() {
   pos = myEnc.read();
   
   // Update the joint values
-  joint_values[0] = pos*3.14/1980;
+  joint_values[0] = pos*3.14/1755;
   joint_values[1] = 0.2;
 
   // Populate the joint state message
@@ -46,5 +46,5 @@ void loop() {
   //publish position
   enc_pub.publish(&enc_msg);
   nh.spinOnce();
-  delay(100);
+  delay(10);
 }

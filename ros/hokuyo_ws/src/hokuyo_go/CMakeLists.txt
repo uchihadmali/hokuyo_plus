@@ -218,6 +218,10 @@ add_executable(deneme src/deneme.cpp)
 target_link_libraries(deneme ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 install(TARGETS deneme DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 #add_executable(state_detect src/state_detect.cpp)
+
+add_executable(laser_real src/laser_real.cpp)
+target_link_libraries(laser_real ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+install(TARGETS laser_real DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 #target_link_libraries(state_detect ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 #install(TARGETS state_detect DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 

@@ -68,6 +68,18 @@ install/local/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
@@ -123,18 +135,6 @@ list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
 
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
 # The main all target
 all: cmake_check_build_system
 	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/hokuyo_go/CMakeFiles/progress.marks
@@ -166,6 +166,21 @@ preinstall/fast:
 depend:
 	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
+
+# Convenience name for target.
+hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/rule:
+	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f CMakeFiles/Makefile2 hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/rule
+.PHONY : hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+pcl_msgs_generate_messages_cpp: hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : pcl_msgs_generate_messages_cpp
+
+# fast build rule for target.
+pcl_msgs_generate_messages_cpp/fast:
+	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/build.make hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/build
+.PHONY : pcl_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
 hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/rule:
@@ -273,19 +288,19 @@ deneme/fast:
 .PHONY : deneme/fast
 
 # Convenience name for target.
-hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/rule:
-	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f CMakeFiles/Makefile2 hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/rule
-.PHONY : hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/rule
+hokuyo_go/CMakeFiles/laser_real.dir/rule:
+	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f CMakeFiles/Makefile2 hokuyo_go/CMakeFiles/laser_real.dir/rule
+.PHONY : hokuyo_go/CMakeFiles/laser_real.dir/rule
 
 # Convenience name for target.
-pcl_msgs_generate_messages_cpp: hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/rule
+laser_real: hokuyo_go/CMakeFiles/laser_real.dir/rule
 
-.PHONY : pcl_msgs_generate_messages_cpp
+.PHONY : laser_real
 
 # fast build rule for target.
-pcl_msgs_generate_messages_cpp/fast:
-	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/build.make hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/build
-.PHONY : pcl_msgs_generate_messages_cpp/fast
+laser_real/fast:
+	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f hokuyo_go/CMakeFiles/laser_real.dir/build.make hokuyo_go/CMakeFiles/laser_real.dir/build
+.PHONY : laser_real/fast
 
 src/deneme.o: src/deneme.cpp.o
 
@@ -313,6 +328,33 @@ src/deneme.s: src/deneme.cpp.s
 src/deneme.cpp.s:
 	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f hokuyo_go/CMakeFiles/deneme.dir/build.make hokuyo_go/CMakeFiles/deneme.dir/src/deneme.cpp.s
 .PHONY : src/deneme.cpp.s
+
+src/laser_real.o: src/laser_real.cpp.o
+
+.PHONY : src/laser_real.o
+
+# target to build an object file
+src/laser_real.cpp.o:
+	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f hokuyo_go/CMakeFiles/laser_real.dir/build.make hokuyo_go/CMakeFiles/laser_real.dir/src/laser_real.cpp.o
+.PHONY : src/laser_real.cpp.o
+
+src/laser_real.i: src/laser_real.cpp.i
+
+.PHONY : src/laser_real.i
+
+# target to preprocess a source file
+src/laser_real.cpp.i:
+	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f hokuyo_go/CMakeFiles/laser_real.dir/build.make hokuyo_go/CMakeFiles/laser_real.dir/src/laser_real.cpp.i
+.PHONY : src/laser_real.cpp.i
+
+src/laser_real.s: src/laser_real.cpp.s
+
+.PHONY : src/laser_real.s
+
+# target to generate assembly for a file
+src/laser_real.cpp.s:
+	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f hokuyo_go/CMakeFiles/laser_real.dir/build.make hokuyo_go/CMakeFiles/laser_real.dir/src/laser_real.cpp.s
+.PHONY : src/laser_real.cpp.s
 
 src/laser_to_pointcloud.o: src/laser_to_pointcloud.cpp.o
 
@@ -375,6 +417,8 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... install/local"
+	@echo "... install"
+	@echo "... pcl_msgs_generate_messages_cpp"
 	@echo "... pcl_msgs_generate_messages_eus"
 	@echo "... pcl_msgs_generate_messages_lisp"
 	@echo "... pcl_msgs_generate_messages_py"
@@ -386,12 +430,14 @@ help:
 	@echo "... test"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... laser_real"
 	@echo "... list_install_components"
-	@echo "... pcl_msgs_generate_messages_cpp"
-	@echo "... install"
 	@echo "... src/deneme.o"
 	@echo "... src/deneme.i"
 	@echo "... src/deneme.s"
+	@echo "... src/laser_real.o"
+	@echo "... src/laser_real.i"
+	@echo "... src/laser_real.s"
 	@echo "... src/laser_to_pointcloud.o"
 	@echo "... src/laser_to_pointcloud.i"
 	@echo "... src/laser_to_pointcloud.s"

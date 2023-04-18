@@ -1169,6 +1169,19 @@ dynamic_reconfigure_gencfg/fast:
 .PHONY : dynamic_reconfigure_gencfg/fast
 
 #=============================================================================
+# Target rules for targets named pcl_msgs_generate_messages_cpp
+
+# Build rule for target.
+pcl_msgs_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pcl_msgs_generate_messages_cpp
+.PHONY : pcl_msgs_generate_messages_cpp
+
+# fast build rule for target.
+pcl_msgs_generate_messages_cpp/fast:
+	$(MAKE) -f hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/build.make hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/build
+.PHONY : pcl_msgs_generate_messages_cpp/fast
+
+#=============================================================================
 # Target rules for targets named pcl_msgs_generate_messages_eus
 
 # Build rule for target.
@@ -1260,17 +1273,17 @@ deneme/fast:
 .PHONY : deneme/fast
 
 #=============================================================================
-# Target rules for targets named pcl_msgs_generate_messages_cpp
+# Target rules for targets named laser_real
 
 # Build rule for target.
-pcl_msgs_generate_messages_cpp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 pcl_msgs_generate_messages_cpp
-.PHONY : pcl_msgs_generate_messages_cpp
+laser_real: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 laser_real
+.PHONY : laser_real
 
 # fast build rule for target.
-pcl_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/build.make hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/build
-.PHONY : pcl_msgs_generate_messages_cpp/fast
+laser_real/fast:
+	$(MAKE) -f hokuyo_go/CMakeFiles/laser_real.dir/build.make hokuyo_go/CMakeFiles/laser_real.dir/build
+.PHONY : laser_real/fast
 
 #=============================================================================
 # Target rules for targets named run_tests_gazebo_sim
@@ -1492,6 +1505,7 @@ help:
 	@echo "... geometry_msgs_generate_messages_nodejs"
 	@echo "... dynamic_reconfigure_generate_messages_eus"
 	@echo "... dynamic_reconfigure_gencfg"
+	@echo "... pcl_msgs_generate_messages_cpp"
 	@echo "... pcl_msgs_generate_messages_eus"
 	@echo "... pcl_msgs_generate_messages_lisp"
 	@echo "... pcl_msgs_generate_messages_py"
@@ -1499,7 +1513,7 @@ help:
 	@echo "... laser_to_pointcloud"
 	@echo "... vel_publisher"
 	@echo "... deneme"
-	@echo "... pcl_msgs_generate_messages_cpp"
+	@echo "... laser_real"
 	@echo "... run_tests_gazebo_sim"
 	@echo "... gazebo_sim"
 	@echo "... _run_tests_gazebo_sim"
