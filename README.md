@@ -134,6 +134,7 @@ should be used to go to the positions 120,-120,0
 - There is a saving issue for the 3-tilt motion. Needs to be fixed.
 - Pan motion should be as fast as possible in 3-tilt.
 - 3-tilt tilt motion should be improved. (ex. vel=1/distance).
+- [Better Hokuyo](https://www.robotshop.com/products/hokuyo-ust-10lx-scanning-laser-rangefinder) can be used.
 
 
 ## Acknowledgements
