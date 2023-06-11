@@ -3,6 +3,7 @@
 > Live demo [_here_](https://www.example.com). <!-- If you have the project hosted somewhere, include the link here. -->
 
 ## Table of Contents
+* [Technologies Used](#technologies-used)
 * [Setup](#setup)
 * [User Guides](#usage)
 * [Developer Guides](#project-status)
@@ -11,31 +12,13 @@
 <!-- * [License](#license) -->
 
 
-## General Information
-- Provide general information about your project here.
-- What problem does it (intend to) solve?
-- What is the purpose of your project?
-- Why did you undertake it?
-<!-- You don't have to answer all the questions - just the ones relevant to your project. -->
-
-
 ## Technologies Used
-- Tech 1 - version 1.0
-- Tech 2 - version 2.0
-- Tech 3 - version 3.0
-
-
-## Features
-List the ready features here:
-- Awesome feature 1
-- Awesome feature 2
-- Awesome feature 3
-
+- ROS noetic 
+- Visual Studio Code
+- Arduino IDE 1.8.19
 
 ## Screenshots
-![Example screenshot](./img/screenshot.png)
-<!-- If you have screenshots you'd like to share, include them here. -->
-
+![Hokuyo Plus Robot](./img/screenshot.png)
 
 ## Setup
 What are the project requirements/dependencies? Where are they listed? A requirements.txt or a Pipfile.lock file perhaps? Where is it located?
@@ -48,9 +31,33 @@ Proceed to describe how to install / setup one's local environment / get started
 - Connect your PC to the Arduino Board and upload the voltage_control.ino code.
 - Remove the connection between the 8-pin Hokuyo connector and the Hokuyo sensor.
 - Connect the blue and brown ends of the Hokuyo connector to the voltage supply. Adjust the voltage to the 5V.
-- Connect the 8-pin Hokuyo connector and the Hokuyo sensor.
+- Connect the 8-pin Hokuyo connector and the Hokuyo sensor. Make sure that the VCC and ground connections are correct.
 - Connect the USB connection of the Hokuyo sensor and the PC.
-- 
+- Open terminal and go to the workspace directory. Open different tabs and source them by the following command;
+
+`source ./devel/setup.bash`
+- Run the following commands in different terminals;
+
+`roscore`
+
+`rosrun rosserial_python serial_node.py /dev/ttyACM0`
+
+`rosrun urg_node urg_node _serial_port:=/dev/ttyACM1`
+
+`rosrun rviz rviz`
+- In the opened Rviz window, do the followings;
+
+Change "Global Options->Fixed Frame" to "map".
+
+Add "PointCloud2".
+
+Change "PointCloud2->Topic" to "/output".
+
+- Run the following commands. This will initiate the mechanism movement and data should be seen on rviz.
+
+`rosrun hokuyo_go laser_real`
+
+- To stop the mechanism, disconnect the motor connections, kill all terminals and upload the voltage_control.ino code to the Arduino Board.
 ### Running Simulation
 `write-your-code-here`
 
