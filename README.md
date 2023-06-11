@@ -65,9 +65,9 @@ Change "PointCloud2->Topic" to "/output".
 
 ## Developer Guides
 ### ROS-ARDUINO communication
-
+For Arduino ROS communication we used this [link](https://maker.pro/arduino/tutorial/how-to-use-arduino-with-robot-operating-system-ros)
 ### Velocity Filter
-
+For velocity filter watch this [video]()
 ### PID control parameters
 
 ### Saved Pointcloud Visualization
