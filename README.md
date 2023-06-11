@@ -98,34 +98,52 @@ For velocity filter choice you may use the velocity_measure.ino code.
 
 Also for PID parameter determination you may use the velocity_pid_test.ino code.
 
-
-
 ### Saved Pointcloud Visualization
+There are 2 ways for this.
+- You can visualize local pointcloud files via Visual Studio Code. There is a pcl library in Visual Studio Code.
+- You can visualize by rviz. Run the following commands and change base frame to /base_link add pointcloud2 in rviz 
+
+`roscore`
+
+`rosrun rviz rviz`
+- Do the followings in rviz;
+
+Change "Global Options->Fixed Frame" to "/base_link".
+
+Add "PointCloud2".
+
+Change "PointCloud2->Topic" to "/cloud_pcd".
+
+- Run the following command and you will see the data in rviz.
+
+`rosrun pcl_ros pcd_to_pointcloud pointcloud_002.pcd 0.1`
+
+
 
 ### Writing Movement Algorithm Code
+In simulation you need to change the vel_publisher.cpp code to write a movement algorithm.
 
+In real life system, you need to change the laser_real.cpp code.
 
 ## Room for Improvement
-Include areas you believe need improvement / could be improved. Also add TODOs for future development.
-
-Room for improvement:
-- Improvement to be done 1
-- Improvement to be done 2
-
 To do:
-- Feature to be added 1
-- Feature to be added 2
+- 3-tilt motion code needs update. APF(artificial potential field) 
+should be used to go to the positions 120,-120,0
+- Constant velocity movement has very noisy result. Should be fixed.
+- URDF of the simulation is not the same with the real world.
+- There is a saving issue for the 3-tilt motion. Needs to be fixed.
+- Pan motion should be as fast as possible in 3-tilt.
+- 3-tilt tilt motion should be improved. (ex. vel=1/distance).
 
 
 ## Acknowledgements
-Give credit here.
-- This project was inspired by...
-- This project was based on [this tutorial](https://www.example.com).
-- Many thanks to...
+Many thanks to Prof Dr H. Işıl Bozma.
 
 
 ## Contact
-Created by [@uchihadmali](https://www.flynerd.pl/) - feel free to contact me!
+Created by [@uchihadmali](https://tr.linkedin.com/in/mehmet-ali-y%C4%B1ld%C4%B1r%C4%B1m-99465214a) - feel free to contact me!
+
+Email: maliyldrm@yandex.com
 
 
 <!-- Optional -->
