@@ -5,15 +5,15 @@
 ## Table of Contents
 * [Technologies Used](#technologies-used)
 * [Setup](#setup)
-* [User Guides](#usage)
-* [Developer Guides](#project-status)
+* [User Guides](#user-guides)
+* [Developer Guides](#developer-guides)
 * [Room for Improvement](#room-for-improvement)
 * [Contact](#contact)
 <!-- * [License](#license) -->
 
 
 ## Technologies Used
-- ROS noetic 
+- ROS Noetic 
 - Visual Studio Code
 - Arduino IDE 1.8.19
 
@@ -62,8 +62,16 @@ Change "PointCloud2->Topic" to "/output".
 `write-your-code-here`
 
 
-## Project Status
-Project is: _in progress_ / _complete_ / _no longer being worked on_. If you are no longer working on it, provide reasons why.
+## Developer Guides
+### ROS-ARDUINO communication
+
+### Velocity Filter
+
+### PID control parameters
+
+### Saved Pointcloud Visualization
+
+### Writing Movement Algorithm Code
 
 
 ## Room for Improvement
