@@ -3,15 +3,10 @@
 > Live demo [_here_](https://www.example.com). <!-- If you have the project hosted somewhere, include the link here. -->
 
 ## Table of Contents
-* [General Info](#general-information)
-* [Technologies Used](#technologies-used)
-* [Features](#features)
-* [Screenshots](#screenshots)
 * [Setup](#setup)
-* [Usage](#usage)
-* [Project Status](#project-status)
+* [User Guides](#usage)
+* [Developer Guides](#project-status)
 * [Room for Improvement](#room-for-improvement)
-* [Acknowledgements](#acknowledgements)
 * [Contact](#contact)
 <!-- * [License](#license) -->
 
@@ -48,10 +43,15 @@ What are the project requirements/dependencies? Where are they listed? A require
 Proceed to describe how to install / setup one's local environment / get started with the project.
 
 
-## Usage
-How does one go about using it?
-Provide various use cases and code examples here.
-
+## User Guides
+### Running Real System
+- Connect your PC to the Arduino Board and upload the voltage_control.ino code.
+- Remove the connection between the 8-pin Hokuyo connector and the Hokuyo sensor.
+- Connect the blue and brown ends of the Hokuyo connector to the voltage supply. Adjust the voltage to the 5V.
+- Connect the 8-pin Hokuyo connector and the Hokuyo sensor.
+- Connect the USB connection of the Hokuyo sensor and the PC.
+- 
+### Running Simulation
 `write-your-code-here`
 
 
