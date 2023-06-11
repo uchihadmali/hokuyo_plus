@@ -1,6 +1,6 @@
 # Hokuyo Plus Project
 > This project is about designing a low cost and high resolution Lidar.
-> Live demo [_here_]([https://www.example.com](https://youtu.be/o_cbM7b2nys)). <!-- If you have the project hosted somewhere, include the link here. -->
+> Live demo [_here_](https://youtu.be/o_cbM7b2nys). <!-- If you have the project hosted somewhere, include the link here. -->
 
 ## Table of Contents
 * [Technologies Used](#technologies-used)
