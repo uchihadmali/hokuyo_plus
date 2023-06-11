@@ -17,13 +17,14 @@
 - Visual Studio Code
 - Arduino IDE 1.8.19
 
-## Screenshots
+## Robot Image
 ![Hokuyo Plus Robot](https://cdn.discordapp.com/attachments/1117499134174314577/1117499582922903662/sistem_foto.jpeg)
 
 ## Setup
-What are the project requirements/dependencies? Where are they listed? A requirements.txt or a Pipfile.lock file perhaps? Where is it located?
-
-Proceed to describe how to install / setup one's local environment / get started with the project.
+Do the followings to be able to run the system;
+- [Dual Bot Ubuntu 20.04 Installation](https://youtu.be/HhJ1WaNJJqA)
+- [Install ROS Noetic](http://wiki.ros.org/noetic/Installation)
+- [Install Arduino IDE 1.8.19](https://docs.arduino.cc/software/ide-v1/tutorials/Linux)
 
 
 ## User Guides
