@@ -60,15 +60,45 @@ Change "PointCloud2->Topic" to "/output".
 
 - To stop the mechanism, disconnect the motor connections, kill all terminals and upload the voltage_control.ino code to the Arduino Board.
 ### Running Simulation
-`write-your-code-here`
+- Go to workspace directory and source several tabs.
+- Run the following command
+
+`roscore`
+- Run the following command. Also you have different launch file options.
+
+`roslaunch hokuyo_plus small_house_turtle.launch`
+
+- Open Rviz.
+
+`rosrun rviz rviz`
+
+- Do the followings in rviz;
+
+Change "Global Options->Fixed Frame" to "taban".
+
+Add "PointCloud2".
+
+Change "PointCloud2->Topic" to "/output".
+
+- Run the following commands. These will start the movement and data should be visible at Rviz.
+
+`rosrun hokuyo_go laser_to_pointcloud`
+
+`rosrun hokuyo_go vel_publisher`
 
 
 ## Developer Guides
 ### ROS-ARDUINO communication
-For Arduino ROS communication we used this [link](https://maker.pro/arduino/tutorial/how-to-use-arduino-with-robot-operating-system-ros)
-### Velocity Filter
-For velocity filter watch this [video]()
-### PID control parameters
+For Arduino ROS communication we used this [link](https://maker.pro/arduino/tutorial/how-to-use-arduino-with-robot-operating-system-ros).
+
+### PID speed control
+For this part watch this [video](https://youtu.be/HRaZLCBFVDE).
+
+For velocity filter choice you may use the velocity_measure.ino code.
+
+Also for PID parameter determination you may use the velocity_pid_test.ino code.
+
+
 
 ### Saved Pointcloud Visualization
 
