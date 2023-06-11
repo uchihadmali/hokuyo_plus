@@ -261,7 +261,7 @@ gtest/googletest/clean: gtest/googletest/CMakeFiles/gtest.dir/clean
 # Recursive "all" directory target.
 hokuyo_go/all: hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/all
 hokuyo_go/all: hokuyo_go/CMakeFiles/vel_publisher.dir/all
-hokuyo_go/all: hokuyo_go/CMakeFiles/deneme.dir/all
+hokuyo_go/all: hokuyo_go/CMakeFiles/ground_node.dir/all
 hokuyo_go/all: hokuyo_go/CMakeFiles/laser_real.dir/all
 
 .PHONY : hokuyo_go/all
@@ -276,10 +276,10 @@ hokuyo_go/clean: hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/clean
 hokuyo_go/clean: hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_eus.dir/clean
 hokuyo_go/clean: hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_lisp.dir/clean
 hokuyo_go/clean: hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/clean
-hokuyo_go/clean: hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/clean
 hokuyo_go/clean: hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/clean
 hokuyo_go/clean: hokuyo_go/CMakeFiles/vel_publisher.dir/clean
-hokuyo_go/clean: hokuyo_go/CMakeFiles/deneme.dir/clean
+hokuyo_go/clean: hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/clean
+hokuyo_go/clean: hokuyo_go/CMakeFiles/ground_node.dir/clean
 hokuyo_go/clean: hokuyo_go/CMakeFiles/laser_real.dir/clean
 
 .PHONY : hokuyo_go/clean
@@ -445,7 +445,7 @@ gtest/googlemock/CMakeFiles/gmock_main.dir/all: gtest/googlemock/CMakeFiles/gmoc
 gtest/googlemock/CMakeFiles/gmock_main.dir/all: gtest/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f gtest/googlemock/CMakeFiles/gmock_main.dir/build.make gtest/googlemock/CMakeFiles/gmock_main.dir/depend
 	$(MAKE) -f gtest/googlemock/CMakeFiles/gmock_main.dir/build.make gtest/googlemock/CMakeFiles/gmock_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles --progress-num=13,14 "Built target gmock_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles --progress-num=11,12 "Built target gmock_main"
 .PHONY : gtest/googlemock/CMakeFiles/gmock_main.dir/all
 
 # Build rule for subdir invocation for target.
@@ -472,7 +472,7 @@ gtest/googlemock/CMakeFiles/gmock_main.dir/clean:
 gtest/googlemock/CMakeFiles/gmock.dir/all: gtest/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f gtest/googlemock/CMakeFiles/gmock.dir/build.make gtest/googlemock/CMakeFiles/gmock.dir/depend
 	$(MAKE) -f gtest/googlemock/CMakeFiles/gmock.dir/build.make gtest/googlemock/CMakeFiles/gmock.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles --progress-num=11,12 "Built target gmock"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles --progress-num=9,10 "Built target gmock"
 .PHONY : gtest/googlemock/CMakeFiles/gmock.dir/all
 
 # Build rule for subdir invocation for target.
@@ -499,7 +499,7 @@ gtest/googlemock/CMakeFiles/gmock.dir/clean:
 gtest/googletest/CMakeFiles/gtest_main.dir/all: gtest/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f gtest/googletest/CMakeFiles/gtest_main.dir/build.make gtest/googletest/CMakeFiles/gtest_main.dir/depend
 	$(MAKE) -f gtest/googletest/CMakeFiles/gtest_main.dir/build.make gtest/googletest/CMakeFiles/gtest_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles --progress-num=17,18 "Built target gtest_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles --progress-num=18,19 "Built target gtest_main"
 .PHONY : gtest/googletest/CMakeFiles/gtest_main.dir/all
 
 # Build rule for subdir invocation for target.
@@ -526,7 +526,7 @@ gtest/googletest/CMakeFiles/gtest_main.dir/clean:
 gtest/googletest/CMakeFiles/gtest.dir/all:
 	$(MAKE) -f gtest/googletest/CMakeFiles/gtest.dir/build.make gtest/googletest/CMakeFiles/gtest.dir/depend
 	$(MAKE) -f gtest/googletest/CMakeFiles/gtest.dir/build.make gtest/googletest/CMakeFiles/gtest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles --progress-num=15,16 "Built target gtest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles --progress-num=16,17 "Built target gtest"
 .PHONY : gtest/googletest/CMakeFiles/gtest.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2491,6 +2491,60 @@ hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/clean:
 .PHONY : hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_py.dir/clean
 
 #=============================================================================
+# Target rules for target hokuyo_go/CMakeFiles/laser_to_pointcloud.dir
+
+# All Build rule for target.
+hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/all:
+	$(MAKE) -f hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/build.make hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/depend
+	$(MAKE) -f hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/build.make hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles --progress-num=22,23 "Built target laser_to_pointcloud"
+.PHONY : hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/all
+
+# Build rule for subdir invocation for target.
+hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles 0
+.PHONY : hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/rule
+
+# Convenience name for target.
+laser_to_pointcloud: hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/rule
+
+.PHONY : laser_to_pointcloud
+
+# clean rule for target.
+hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/clean:
+	$(MAKE) -f hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/build.make hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/clean
+.PHONY : hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/clean
+
+#=============================================================================
+# Target rules for target hokuyo_go/CMakeFiles/vel_publisher.dir
+
+# All Build rule for target.
+hokuyo_go/CMakeFiles/vel_publisher.dir/all:
+	$(MAKE) -f hokuyo_go/CMakeFiles/vel_publisher.dir/build.make hokuyo_go/CMakeFiles/vel_publisher.dir/depend
+	$(MAKE) -f hokuyo_go/CMakeFiles/vel_publisher.dir/build.make hokuyo_go/CMakeFiles/vel_publisher.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles --progress-num=24,25 "Built target vel_publisher"
+.PHONY : hokuyo_go/CMakeFiles/vel_publisher.dir/all
+
+# Build rule for subdir invocation for target.
+hokuyo_go/CMakeFiles/vel_publisher.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 hokuyo_go/CMakeFiles/vel_publisher.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles 0
+.PHONY : hokuyo_go/CMakeFiles/vel_publisher.dir/rule
+
+# Convenience name for target.
+vel_publisher: hokuyo_go/CMakeFiles/vel_publisher.dir/rule
+
+.PHONY : vel_publisher
+
+# clean rule for target.
+hokuyo_go/CMakeFiles/vel_publisher.dir/clean:
+	$(MAKE) -f hokuyo_go/CMakeFiles/vel_publisher.dir/build.make hokuyo_go/CMakeFiles/vel_publisher.dir/clean
+.PHONY : hokuyo_go/CMakeFiles/vel_publisher.dir/clean
+
+#=============================================================================
 # Target rules for target hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir
 
 # All Build rule for target.
@@ -2518,85 +2572,31 @@ hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/clean:
 .PHONY : hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/clean
 
 #=============================================================================
-# Target rules for target hokuyo_go/CMakeFiles/laser_to_pointcloud.dir
+# Target rules for target hokuyo_go/CMakeFiles/ground_node.dir
 
 # All Build rule for target.
-hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/all:
-	$(MAKE) -f hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/build.make hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/depend
-	$(MAKE) -f hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/build.make hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles --progress-num=21,22 "Built target laser_to_pointcloud"
-.PHONY : hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/all
+hokuyo_go/CMakeFiles/ground_node.dir/all:
+	$(MAKE) -f hokuyo_go/CMakeFiles/ground_node.dir/build.make hokuyo_go/CMakeFiles/ground_node.dir/depend
+	$(MAKE) -f hokuyo_go/CMakeFiles/ground_node.dir/build.make hokuyo_go/CMakeFiles/ground_node.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles --progress-num=13,14,15 "Built target ground_node"
+.PHONY : hokuyo_go/CMakeFiles/ground_node.dir/all
 
 # Build rule for subdir invocation for target.
-hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/all
+hokuyo_go/CMakeFiles/ground_node.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles 3
+	$(MAKE) -f CMakeFiles/Makefile2 hokuyo_go/CMakeFiles/ground_node.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles 0
-.PHONY : hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/rule
+.PHONY : hokuyo_go/CMakeFiles/ground_node.dir/rule
 
 # Convenience name for target.
-laser_to_pointcloud: hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/rule
+ground_node: hokuyo_go/CMakeFiles/ground_node.dir/rule
 
-.PHONY : laser_to_pointcloud
-
-# clean rule for target.
-hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/clean:
-	$(MAKE) -f hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/build.make hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/clean
-.PHONY : hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/clean
-
-#=============================================================================
-# Target rules for target hokuyo_go/CMakeFiles/vel_publisher.dir
-
-# All Build rule for target.
-hokuyo_go/CMakeFiles/vel_publisher.dir/all:
-	$(MAKE) -f hokuyo_go/CMakeFiles/vel_publisher.dir/build.make hokuyo_go/CMakeFiles/vel_publisher.dir/depend
-	$(MAKE) -f hokuyo_go/CMakeFiles/vel_publisher.dir/build.make hokuyo_go/CMakeFiles/vel_publisher.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles --progress-num=23,24 "Built target vel_publisher"
-.PHONY : hokuyo_go/CMakeFiles/vel_publisher.dir/all
-
-# Build rule for subdir invocation for target.
-hokuyo_go/CMakeFiles/vel_publisher.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 hokuyo_go/CMakeFiles/vel_publisher.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles 0
-.PHONY : hokuyo_go/CMakeFiles/vel_publisher.dir/rule
-
-# Convenience name for target.
-vel_publisher: hokuyo_go/CMakeFiles/vel_publisher.dir/rule
-
-.PHONY : vel_publisher
+.PHONY : ground_node
 
 # clean rule for target.
-hokuyo_go/CMakeFiles/vel_publisher.dir/clean:
-	$(MAKE) -f hokuyo_go/CMakeFiles/vel_publisher.dir/build.make hokuyo_go/CMakeFiles/vel_publisher.dir/clean
-.PHONY : hokuyo_go/CMakeFiles/vel_publisher.dir/clean
-
-#=============================================================================
-# Target rules for target hokuyo_go/CMakeFiles/deneme.dir
-
-# All Build rule for target.
-hokuyo_go/CMakeFiles/deneme.dir/all:
-	$(MAKE) -f hokuyo_go/CMakeFiles/deneme.dir/build.make hokuyo_go/CMakeFiles/deneme.dir/depend
-	$(MAKE) -f hokuyo_go/CMakeFiles/deneme.dir/build.make hokuyo_go/CMakeFiles/deneme.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles --progress-num=1,2 "Built target deneme"
-.PHONY : hokuyo_go/CMakeFiles/deneme.dir/all
-
-# Build rule for subdir invocation for target.
-hokuyo_go/CMakeFiles/deneme.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 hokuyo_go/CMakeFiles/deneme.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles 0
-.PHONY : hokuyo_go/CMakeFiles/deneme.dir/rule
-
-# Convenience name for target.
-deneme: hokuyo_go/CMakeFiles/deneme.dir/rule
-
-.PHONY : deneme
-
-# clean rule for target.
-hokuyo_go/CMakeFiles/deneme.dir/clean:
-	$(MAKE) -f hokuyo_go/CMakeFiles/deneme.dir/build.make hokuyo_go/CMakeFiles/deneme.dir/clean
-.PHONY : hokuyo_go/CMakeFiles/deneme.dir/clean
+hokuyo_go/CMakeFiles/ground_node.dir/clean:
+	$(MAKE) -f hokuyo_go/CMakeFiles/ground_node.dir/build.make hokuyo_go/CMakeFiles/ground_node.dir/clean
+.PHONY : hokuyo_go/CMakeFiles/ground_node.dir/clean
 
 #=============================================================================
 # Target rules for target hokuyo_go/CMakeFiles/laser_real.dir
@@ -2605,7 +2605,7 @@ hokuyo_go/CMakeFiles/deneme.dir/clean:
 hokuyo_go/CMakeFiles/laser_real.dir/all:
 	$(MAKE) -f hokuyo_go/CMakeFiles/laser_real.dir/build.make hokuyo_go/CMakeFiles/laser_real.dir/depend
 	$(MAKE) -f hokuyo_go/CMakeFiles/laser_real.dir/build.make hokuyo_go/CMakeFiles/laser_real.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles --progress-num=19,20 "Built target laser_real"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles --progress-num=20,21 "Built target laser_real"
 .PHONY : hokuyo_go/CMakeFiles/laser_real.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2659,7 +2659,7 @@ gazebo_sim/CMakeFiles/run_tests_gazebo_sim.dir/clean:
 gazebo_sim/CMakeFiles/gazebo_sim.dir/all:
 	$(MAKE) -f gazebo_sim/CMakeFiles/gazebo_sim.dir/build.make gazebo_sim/CMakeFiles/gazebo_sim.dir/depend
 	$(MAKE) -f gazebo_sim/CMakeFiles/gazebo_sim.dir/build.make gazebo_sim/CMakeFiles/gazebo_sim.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles --progress-num=9,10 "Built target gazebo_sim"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles --progress-num=7,8 "Built target gazebo_sim"
 .PHONY : gazebo_sim/CMakeFiles/gazebo_sim.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2849,7 +2849,7 @@ gazebo_sim/CMakeFiles/clean_test_results_gazebo_sim.dir/clean:
 gazebo_sim/CMakeFiles/gazebo_ros_node.dir/all: gazebo_sim/CMakeFiles/gazebo_sim.dir/all
 	$(MAKE) -f gazebo_sim/CMakeFiles/gazebo_ros_node.dir/build.make gazebo_sim/CMakeFiles/gazebo_ros_node.dir/depend
 	$(MAKE) -f gazebo_sim/CMakeFiles/gazebo_ros_node.dir/build.make gazebo_sim/CMakeFiles/gazebo_ros_node.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles --progress-num=3,4,5 "Built target gazebo_ros_node"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles --progress-num=1,2,3 "Built target gazebo_ros_node"
 .PHONY : gazebo_sim/CMakeFiles/gazebo_ros_node.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2876,7 +2876,7 @@ gazebo_sim/CMakeFiles/gazebo_ros_node.dir/clean:
 gazebo_sim/CMakeFiles/gazebo_ros_node2.dir/all: gazebo_sim/CMakeFiles/gazebo_sim.dir/all
 	$(MAKE) -f gazebo_sim/CMakeFiles/gazebo_ros_node2.dir/build.make gazebo_sim/CMakeFiles/gazebo_ros_node2.dir/depend
 	$(MAKE) -f gazebo_sim/CMakeFiles/gazebo_ros_node2.dir/build.make gazebo_sim/CMakeFiles/gazebo_ros_node2.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles --progress-num=6,7,8 "Built target gazebo_ros_node2"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build/CMakeFiles --progress-num=4,5,6 "Built target gazebo_ros_node2"
 .PHONY : gazebo_sim/CMakeFiles/gazebo_ros_node2.dir/all
 
 # Build rule for subdir invocation for target.

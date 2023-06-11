@@ -106,7 +106,7 @@ void encoCallback(const sensor_msgs::JointState::ConstPtr& msg)
     //ctn=156;
 
 
-   if( fabs(angle-lastangle)>=(5.5*M_PI)/18000|| fabs(panangle-lastpan)>=(23*M_PI)/18000 ){     //if(fabs(angle-lastangle)>0.01){
+   if( fabs(angle-lastangle)>=(M_PI)/90 && fabs(panangle-lastpan)>=(M_PI)/720 ){     //if(fabs(angle-lastangle)>0.01){
         if(ctn<1000){
 
             scanSize= (int)laser_scan.size();
@@ -256,9 +256,10 @@ void encoCallback(const sensor_msgs::JointState::ConstPtr& msg)
         }
 
         ctn++;
+        lastangle=angle;
+    	lastpan=panangle;
     }
-    lastangle=angle;
-    lastpan=panangle;
+    
       //std::cout << "angle: " <<   angle << std::endl;
 
 }
@@ -274,7 +275,7 @@ int main(int argc, char **argv)
   //subscribing topics
   ros::Subscriber sub = n.subscribe("/joint_states", 1000, encoCallback);
   //ros::Subscriber sub2 = n.subscribe("pan", 1, panCallback);
-  ros::Subscriber laserSub = n.subscribe("/scan", 1000, laserCallback); //hokuyo_scan
+  ros::Subscriber laserSub = n.subscribe("/hokuyo/scan", 1000, laserCallback); //hokuyo/scan
   //publishing resulting point cloud
   ros::Publisher pclPub = n.advertise<sensor_msgs::PointCloud2> ("output", 10);
 
@@ -284,7 +285,7 @@ int main(int argc, char **argv)
       //points.data.assign();
 
 
-      cloud_out.header.frame_id = "laser";//taban
+      cloud_out.header.frame_id = "taban";
       cloud_out.header.stamp = last_laser.header.stamp;
       cloud_out.header.seq = cloud_out.header.seq+1;
 

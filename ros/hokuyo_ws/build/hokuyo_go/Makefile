@@ -228,21 +228,6 @@ pcl_msgs_generate_messages_py/fast:
 .PHONY : pcl_msgs_generate_messages_py/fast
 
 # Convenience name for target.
-hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f CMakeFiles/Makefile2 hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/rule
-.PHONY : hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-pcl_msgs_generate_messages_nodejs: hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : pcl_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-pcl_msgs_generate_messages_nodejs/fast:
-	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/build.make hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/build
-.PHONY : pcl_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
 hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/rule:
 	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f CMakeFiles/Makefile2 hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/rule
 .PHONY : hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/rule
@@ -273,19 +258,34 @@ vel_publisher/fast:
 .PHONY : vel_publisher/fast
 
 # Convenience name for target.
-hokuyo_go/CMakeFiles/deneme.dir/rule:
-	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f CMakeFiles/Makefile2 hokuyo_go/CMakeFiles/deneme.dir/rule
-.PHONY : hokuyo_go/CMakeFiles/deneme.dir/rule
+hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f CMakeFiles/Makefile2 hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/rule
+.PHONY : hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
-deneme: hokuyo_go/CMakeFiles/deneme.dir/rule
+pcl_msgs_generate_messages_nodejs: hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/rule
 
-.PHONY : deneme
+.PHONY : pcl_msgs_generate_messages_nodejs
 
 # fast build rule for target.
-deneme/fast:
-	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f hokuyo_go/CMakeFiles/deneme.dir/build.make hokuyo_go/CMakeFiles/deneme.dir/build
-.PHONY : deneme/fast
+pcl_msgs_generate_messages_nodejs/fast:
+	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/build.make hokuyo_go/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/build
+.PHONY : pcl_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+hokuyo_go/CMakeFiles/ground_node.dir/rule:
+	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f CMakeFiles/Makefile2 hokuyo_go/CMakeFiles/ground_node.dir/rule
+.PHONY : hokuyo_go/CMakeFiles/ground_node.dir/rule
+
+# Convenience name for target.
+ground_node: hokuyo_go/CMakeFiles/ground_node.dir/rule
+
+.PHONY : ground_node
+
+# fast build rule for target.
+ground_node/fast:
+	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f hokuyo_go/CMakeFiles/ground_node.dir/build.make hokuyo_go/CMakeFiles/ground_node.dir/build
+.PHONY : ground_node/fast
 
 # Convenience name for target.
 hokuyo_go/CMakeFiles/laser_real.dir/rule:
@@ -302,32 +302,32 @@ laser_real/fast:
 	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f hokuyo_go/CMakeFiles/laser_real.dir/build.make hokuyo_go/CMakeFiles/laser_real.dir/build
 .PHONY : laser_real/fast
 
-src/deneme.o: src/deneme.cpp.o
+src/ground_plane_fitting.o: src/ground_plane_fitting.cpp.o
 
-.PHONY : src/deneme.o
+.PHONY : src/ground_plane_fitting.o
 
 # target to build an object file
-src/deneme.cpp.o:
-	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f hokuyo_go/CMakeFiles/deneme.dir/build.make hokuyo_go/CMakeFiles/deneme.dir/src/deneme.cpp.o
-.PHONY : src/deneme.cpp.o
+src/ground_plane_fitting.cpp.o:
+	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f hokuyo_go/CMakeFiles/ground_node.dir/build.make hokuyo_go/CMakeFiles/ground_node.dir/src/ground_plane_fitting.cpp.o
+.PHONY : src/ground_plane_fitting.cpp.o
 
-src/deneme.i: src/deneme.cpp.i
+src/ground_plane_fitting.i: src/ground_plane_fitting.cpp.i
 
-.PHONY : src/deneme.i
+.PHONY : src/ground_plane_fitting.i
 
 # target to preprocess a source file
-src/deneme.cpp.i:
-	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f hokuyo_go/CMakeFiles/deneme.dir/build.make hokuyo_go/CMakeFiles/deneme.dir/src/deneme.cpp.i
-.PHONY : src/deneme.cpp.i
+src/ground_plane_fitting.cpp.i:
+	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f hokuyo_go/CMakeFiles/ground_node.dir/build.make hokuyo_go/CMakeFiles/ground_node.dir/src/ground_plane_fitting.cpp.i
+.PHONY : src/ground_plane_fitting.cpp.i
 
-src/deneme.s: src/deneme.cpp.s
+src/ground_plane_fitting.s: src/ground_plane_fitting.cpp.s
 
-.PHONY : src/deneme.s
+.PHONY : src/ground_plane_fitting.s
 
 # target to generate assembly for a file
-src/deneme.cpp.s:
-	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f hokuyo_go/CMakeFiles/deneme.dir/build.make hokuyo_go/CMakeFiles/deneme.dir/src/deneme.cpp.s
-.PHONY : src/deneme.cpp.s
+src/ground_plane_fitting.cpp.s:
+	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f hokuyo_go/CMakeFiles/ground_node.dir/build.make hokuyo_go/CMakeFiles/ground_node.dir/src/ground_plane_fitting.cpp.s
+.PHONY : src/ground_plane_fitting.cpp.s
 
 src/laser_real.o: src/laser_real.cpp.o
 
@@ -383,6 +383,33 @@ src/laser_to_pointcloud.cpp.s:
 	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/build.make hokuyo_go/CMakeFiles/laser_to_pointcloud.dir/src/laser_to_pointcloud.cpp.s
 .PHONY : src/laser_to_pointcloud.cpp.s
 
+src/main.o: src/main.cpp.o
+
+.PHONY : src/main.o
+
+# target to build an object file
+src/main.cpp.o:
+	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f hokuyo_go/CMakeFiles/ground_node.dir/build.make hokuyo_go/CMakeFiles/ground_node.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
+
+src/main.i: src/main.cpp.i
+
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.cpp.i:
+	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f hokuyo_go/CMakeFiles/ground_node.dir/build.make hokuyo_go/CMakeFiles/ground_node.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
+
+src/main.s: src/main.cpp.s
+
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.cpp.s:
+	cd /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/build && $(MAKE) -f hokuyo_go/CMakeFiles/ground_node.dir/build.make hokuyo_go/CMakeFiles/ground_node.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
+
 src/vel_publisher.o: src/vel_publisher.cpp.o
 
 .PHONY : src/vel_publisher.o
@@ -422,25 +449,28 @@ help:
 	@echo "... pcl_msgs_generate_messages_eus"
 	@echo "... pcl_msgs_generate_messages_lisp"
 	@echo "... pcl_msgs_generate_messages_py"
-	@echo "... pcl_msgs_generate_messages_nodejs"
 	@echo "... laser_to_pointcloud"
 	@echo "... install/strip"
 	@echo "... vel_publisher"
-	@echo "... deneme"
 	@echo "... test"
+	@echo "... pcl_msgs_generate_messages_nodejs"
+	@echo "... ground_node"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... laser_real"
 	@echo "... list_install_components"
-	@echo "... src/deneme.o"
-	@echo "... src/deneme.i"
-	@echo "... src/deneme.s"
+	@echo "... src/ground_plane_fitting.o"
+	@echo "... src/ground_plane_fitting.i"
+	@echo "... src/ground_plane_fitting.s"
 	@echo "... src/laser_real.o"
 	@echo "... src/laser_real.i"
 	@echo "... src/laser_real.s"
 	@echo "... src/laser_to_pointcloud.o"
 	@echo "... src/laser_to_pointcloud.i"
 	@echo "... src/laser_to_pointcloud.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
 	@echo "... src/vel_publisher.o"
 	@echo "... src/vel_publisher.i"
 	@echo "... src/vel_publisher.s"

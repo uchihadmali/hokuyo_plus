@@ -1,7 +1,8 @@
+//çalışan encoder dan veri alma kodu (tek encoder)
 #include <Encoder.h>
 
-#define ENCA 2 // YELLOW
-#define ENCB 21 // WHITE
+#define ENCA 19 // YELLOW
+#define ENCB 20 // WHITE
 
 Encoder myEnc(ENCA, ENCB);
 

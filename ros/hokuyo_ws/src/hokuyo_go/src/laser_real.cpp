@@ -9,6 +9,8 @@
 #include <pcl/point_types.h>
 #include <iostream>
 #include <fstream>
+#include <std_msgs/Bool.h>
+#include <geometry_msgs/Twist.h>
 
 using namespace std;
 
@@ -21,10 +23,13 @@ double lastangle = 0.0;
 double lastangle2 = 0.0;
 double lastpan=0;
 double laser_increment = 0.0;
+double vel_pan=0;
+double vel_tilt=0;
 
 float x[512*170];
 float y[512*170];
 float z[512*170];
+int scan_number=5000;
 int ctn = 0;
 int t =0;
 int scanSize;
@@ -42,13 +47,16 @@ float zz;
 float e_x,e_y,e_z;
 float start_angle;
 float x1=0.106;
+float vel_ref[]={0.2,0.8};
+int org=0;
 
 //declaring the lasercan and pointcloud objects
 sensor_msgs::LaserScan last_laser;
 sensor_msgs::PointCloud2 cloud_out;
+int save=0;
 
 
-// Fill in the cloud data
+// Getting laser data
 
 void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
 {
@@ -62,43 +70,96 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
 
 
 
-// %Tag(CALLBACK)%
+// Encoder Callback and cmd_vel calculations
 void encoCallback(const sensor_msgs::JointState::ConstPtr& msg)
 {
-  //ROS_INFO("I heard: [%s]", msg->data.c_str());
-
-    //std::cout << msg->data << std::endl;
 
     t++;
 
-    //angle = msg->data;
+    //getting joint states
     angle = msg->position[0];
-    ROS_INFO("angle: %f",angle);
-    //ROS_INFO("cos angle: %f",cos(angle));
-    //cout<< angle;
-    //angle= (angle/180)*M_PI;
-    
     panangle= msg->position[1];
-    //panangle=(panangle/180)* M_PI;
-    ROS_INFO("pan angle: %f",panangle);
     
-    //endpoint
-    //e_x= l_1*sin(panangle)*sin(angle)+l_2*cos(panangle);
-    //e_y= -l_1*cos(panangle)*sin(angle)+l_2*sin(panangle)-d_2;
-    //e_z= l_1*cos(angle)+d_1;
-                
-    //ROS_INFO("endpoint: (%f,%f,%f) ", e_x,e_y,e_z);
-    //ctn=156;
+    
+    //one choice of movement (3-tilt)
+    //this movement code needs update, you need to use APF for position control. 
+    if(org==0 && abs(angle)<0.1){
+    vel_tilt=vel_ref[0];
+    vel_pan=0;
+    }
+    if(org==0 && angle>0.55 ){
+    vel_tilt=-vel_ref[0];
+    vel_pan=0;
+    org++;
+    }
+    if(angle<-0.55 && org==1){
+    vel_tilt=0;
+    vel_pan=vel_ref[1];
+    org++;
+    }
+    
+    if(panangle>2 && org==2){
+    vel_pan=0;
+    vel_tilt=vel_ref[0];
+    org++;
+    }
+    if(org==3 && angle>0.55){
+    vel_tilt=0;
+    vel_pan=-vel_ref[1];
+    org++;
+    }
+    if(org==4 && panangle <-2){
+    vel_pan=0;
+    vel_tilt=-vel_ref[0];
+    org++;
+    }
+    if(org==5&& angle<-0.55){
+    vel_tilt=0;
+    vel_pan=vel_ref[1];
+    org++;
+    }
+    if(org==6&& panangle>0){
+    vel_pan=0;
+    vel_tilt=0;
+    save=1;
+    //org=0;
+    }
+    
+    //constant velocity movement code (This movement has very noisy result, reason unknown)
+    /*if(angle<-0.55 && vel_ref[0]<0 ){
+    vel_ref[0]=-vel_ref[0];
+    }
+    
+    if(angle>0.55 && vel_ref[0]>0 ){
+    vel_ref[0]=-vel_ref[0];
+    }
+    if(panangle<-0.75 && vel_ref[1]<0){
+    vel_ref[1]=-vel_ref[1];
+    }
+    if(panangle>0.75 && vel_ref[1]>0){
+    vel_ref[1]=-vel_ref[1];
+    }*/
+    
 
-
-   if( fabs(angle-lastangle)>=(5.5*M_PI)/18000|| fabs(panangle-lastpan)>=(23*M_PI)/18000 ){     //if(fabs(angle-lastangle)>0.01){
-        if(ctn<2000){
+   //Deciding on resolution, and assigning 3d data
+   if( fabs(angle-lastangle)>=(M_PI)/1000 ||org==6){ //resolution 
+        if(ctn<scan_number){
+            
+            if(save==1){
+            //save the data to pcd ASCII
+            pcl::PointCloud<pcl::PointXYZ>::Ptr pcl_cloud(new pcl::PointCloud<pcl::PointXYZ>);
+    	    pcl::fromROSMsg(cloud_out, *pcl_cloud);
+    	    pcl::io::savePCDFileASCII("pointcloud.pcd", *pcl_cloud); //we need indexing here like pointcloud_xxx.pcd
+    	    ROS_INFO("PointCloud2 saved to pointcloud.pcd");
+    	    org=7;
+    	    save=0;
+            }
 
             scanSize= (int)laser_scan.size();
 
-            //cloud_out.header = last_laser.header;
+            
             cloud_out.height = 1;
-            cloud_out.width  = scanSize*1000;      // scanSize*168
+            cloud_out.width  = scanSize*scan_number;    
             cloud_out.fields.resize (3);
             cloud_out.fields[0].name = "x";
             cloud_out.fields[0].offset = 0;
@@ -126,7 +187,7 @@ void encoCallback(const sensor_msgs::JointState::ConstPtr& msg)
             for(int i=0; i<scanSize; i++){
             
             	//laser to end effector frame coordinate 
-                start_angle=-0.523;
+                start_angle=-0.785;
                 yy= laser_scan[i]*sin(laser_increment*i+start_angle);
                 xx= laser_scan[i]*cos(laser_increment*i+start_angle);
                 zz= 0;
@@ -149,11 +210,7 @@ void encoCallback(const sensor_msgs::JointState::ConstPtr& msg)
 
                 float *pstep = (float*)&cloud_out.data[count * cloud_out.point_step];
 
-                /*
-                pstep[0] = y[i+(ctn*scanSize)];
-                pstep[1] = x[i+(ctn*scanSize)];
-                pstep[2] = z[i+(ctn*scanSize)];
-                */
+                
                 
                 pstep[0] = x[i];
                 pstep[1] = y[i];
@@ -170,48 +227,11 @@ void encoCallback(const sensor_msgs::JointState::ConstPtr& msg)
         ctn=0;
         }
 
-        if(ctn==-1){
-              ofstream myfile ("example1x.txt");
-              if (myfile.is_open())
-              {
-
-                for(int count = 0; count < 512*154 ; count ++){    //512*168
-                    myfile << x[count] << " " ;
-                }
-                myfile.close();
-              }
-              else cout << "Unable to open file";
-
-
-
-            ofstream myfile2 ("example2y.txt");
-              if (myfile2.is_open())
-              {
-
-                for(int count = 0; count < 512*154; count ++){      //512*168
-                    myfile2 << y[count] << " " ;
-                }
-                myfile2.close();
-              }
-              else cout << "Unable to open file";
-
-
-              ofstream myfile3 ("example3z.txt");
-                if (myfile3.is_open())
-                {
-                  for(int count = 0; count < 512*154; count ++){      //512*168
-                      myfile3 << z[count] << " " ;
-                  }
-                  myfile3.close();
-                }
-                else cout << "Unable to open file";
-        }
-
         ctn++;
+        lastangle=angle;
+        lastpan=panangle;
     }
-    lastangle=angle;
-    lastpan=panangle;
-      //std::cout << "angle: " <<   angle << std::endl;
+    
 
 }
 
@@ -224,32 +244,28 @@ int main(int argc, char **argv)
 
  
   //subscribing topics
-  ros::Subscriber sub = n.subscribe("/joint_states", 1000, encoCallback);
-  //ros::Subscriber sub2 = n.subscribe("pan", 1, panCallback);
-  ros::Subscriber laserSub = n.subscribe("/scan", 1000, laserCallback); //hokuyo_scan
-  //publishing resulting point cloud
-  ros::Publisher pclPub = n.advertise<sensor_msgs::PointCloud2> ("output", 10);
+  ros::Subscriber sub = n.subscribe("/joint_states", 1000, encoCallback); //arduino encoder
+  ros::Subscriber laserSub = n.subscribe("/scan", 1000, laserCallback);   //hokuyo data
+  
+  //publishers
+  ros::Publisher pclPub = n.advertise<sensor_msgs::PointCloud2> ("output", 10); //3d data
+  ros::Publisher vel_pub = n.advertise<geometry_msgs::Twist>("/cmd_vel", 10);   //cmd_vel commands
 
 
+  geometry_msgs::Twist vel_msg;
   ros::Rate loop(10);
   while(ros::ok()){
-      //points.data.assign();
+      
+      vel_msg.linear.x=vel_tilt;
+      vel_msg.linear.y=vel_pan;
+      vel_pub.publish(vel_msg);
 
-
-      cloud_out.header.frame_id = "map";//taban
+      cloud_out.header.frame_id = "map";
       cloud_out.header.stamp = last_laser.header.stamp;
       cloud_out.header.seq = cloud_out.header.seq+1;
 
       pclPub.publish(cloud_out);
-
-
-    //  std::cout << "angle: " << laser_scan.size()<< std::endl;
-
-  //    std::cout << " one array is read" << std::endl;
-
-   //   pclPub.publish(cloud);
-
-   //   std::cout << "angle: " << laser_scan.size()<< std::endl;
+      
       ros::spinOnce();
       loop.sleep();
 

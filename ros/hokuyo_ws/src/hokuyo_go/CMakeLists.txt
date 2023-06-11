@@ -20,7 +20,8 @@ catkin_package(
   CATKIN_DEPENDS roscpp rospy std_msgs
     
 )
-
+SET(ground_HEADERS src/ground_plane_fitting.h)
+SET(ground_SOURCES src/ground_plane_fitting.cpp)
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
@@ -214,14 +215,16 @@ add_executable(vel_publisher src/vel_publisher.cpp)
 target_link_libraries(vel_publisher ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 install(TARGETS vel_publisher DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 
-add_executable(deneme src/deneme.cpp)
-target_link_libraries(deneme ${catkin_LIBRARIES} ${Boost_LIBRARIES})
-install(TARGETS deneme DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
-#add_executable(state_detect src/state_detect.cpp)
-
 add_executable(laser_real src/laser_real.cpp)
 target_link_libraries(laser_real ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 install(TARGETS laser_real DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 #target_link_libraries(state_detect ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 #install(TARGETS state_detect DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+
+
+add_executable(ground_node src/main.cpp ${ground_SOURCES} ${ground_HEADERS})
+#target_link_libraries(navigation_node ${PROJECT_NAME})
+target_link_libraries(ground_node ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+install(TARGETS ground_node DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+
 

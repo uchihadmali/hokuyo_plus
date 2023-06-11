@@ -3,6 +3,8 @@
 
 hokuyo_go/CMakeFiles/laser_real.dir/src/laser_real.cpp.o
  /home/mali/hokuyo_repo/hokuyo_plus/ros/hokuyo_ws/src/hokuyo_go/src/laser_real.cpp
+ /opt/ros/noetic/include/geometry_msgs/Twist.h
+ /opt/ros/noetic/include/geometry_msgs/Vector3.h
  /opt/ros/noetic/include/pcl_conversions/pcl_conversions.h
  /opt/ros/noetic/include/pcl_msgs/ModelCoefficients.h
  /opt/ros/noetic/include/pcl_msgs/PointIndices.h
@@ -69,6 +71,7 @@ hokuyo_go/CMakeFiles/laser_real.dir/src/laser_real.cpp.o
  /opt/ros/noetic/include/sensor_msgs/LaserScan.h
  /opt/ros/noetic/include/sensor_msgs/PointCloud2.h
  /opt/ros/noetic/include/sensor_msgs/PointField.h
+ /opt/ros/noetic/include/std_msgs/Bool.h
  /opt/ros/noetic/include/std_msgs/Float32.h
  /opt/ros/noetic/include/std_msgs/Float64.h
  /opt/ros/noetic/include/std_msgs/Header.h

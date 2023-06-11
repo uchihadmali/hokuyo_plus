@@ -1,0 +1,15 @@
+This file is about the current issues about the project.
+-------------------------------------------------------------------------
+Issue 1: 3-tilt motion code needs update. APF(artificial potential field) 
+should be used to go to the positions 120,-120,0
+-------------------------------------------------------------------------
+Issue 2: Constant velocity movement has very noisy result. Should be fixed.
+-------------------------------------------------------------------------
+Issue 3: There is a saving issue for the 3-tilt motion. Needs to be fixed
+-------------------------------------------------------------------------
+Issue 4: 3-tilt tilt motion should be improved. (ex. vel=1/distance)
+-------------------------------------------------------------------------
+Issue 5: Pan motion should be as fast as possible in 3-tilt.
+-------------------------------------------------------------------------
+Issue 6: URDF of the simulation is not the same with the real world.
+-------------------------------------------------------------------------
