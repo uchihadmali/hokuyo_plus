@@ -18,7 +18,7 @@
 - Arduino IDE 1.8.19
 
 ## Screenshots
-![Hokuyo Plus Robot](./img/screenshot.png)
+![Hokuyo Plus Robot](https://cdn.discordapp.com/attachments/1117499134174314577/1117499582922903662/sistem_foto.jpeg)
 
 ## Setup
 What are the project requirements/dependencies? Where are they listed? A requirements.txt or a Pipfile.lock file perhaps? Where is it located?
