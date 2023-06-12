@@ -4,6 +4,7 @@
 
 ## Table of Contents
 * [Technologies Used](#technologies-used)
+* [Robot Image](#robot-image)
 * [Setup](#setup)
 * [User Guides](#user-guides)
 * [Developer Guides](#developer-guides)
@@ -129,8 +130,9 @@ In real life system, you need to change the laser_real.cpp code.
 To do:
 - 3-tilt motion code needs update. APF(artificial potential field) 
 should be used to go to the positions 120,-120,0
+- Theres an issue with pan motion in simulation. Probably the l_2 distance is wrong. Needs to be fixed.
 - Constant velocity movement has very noisy result. Should be fixed.
-- URDF of the simulation is not the same with the real world.
+- Kinematic of the simulation is not the same with the real world.
 - There is a saving issue for the 3-tilt motion. Needs to be fixed.
 - Pan motion should be as fast as possible in 3-tilt.
 - 3-tilt tilt motion should be improved. (ex. vel=1/distance).
