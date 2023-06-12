@@ -26,9 +26,9 @@ double laser_increment = 0.0;
 double vel_pan=0;
 double vel_tilt=0;
 
-float x[512*170];
-float y[512*170];
-float z[512*170];
+float x[1024];
+float y[1024];
+float z[1024];
 int scan_number=5000;
 int ctn = 0;
 int t =0;
@@ -74,7 +74,6 @@ void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
 void encoCallback(const sensor_msgs::JointState::ConstPtr& msg)
 {
 
-    t++;
 
     //getting joint states
     angle = msg->position[0];

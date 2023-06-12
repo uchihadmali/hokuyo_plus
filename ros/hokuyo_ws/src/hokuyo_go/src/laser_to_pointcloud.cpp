@@ -22,9 +22,9 @@ double lastangle2 = 0.0;
 double lastpan=0;
 double laser_increment = 0.0;
 
-float x[512*170];
-float y[512*170];
-float z[512*170];
+float x[1024];
+float y[1024];
+float z[1024];
 int ctn = 0;
 int t =0;
 int scanSize;
@@ -35,85 +35,47 @@ int d2=0.1;
 float d_1=0.114;
 float d_2=0.02845;
 float l_1=0.045;
-float l_2=0.075;
+float l_2=0.040; //0.075
 float xx;
 float yy;
 float zz;
 float e_x,e_y,e_z;
 float start_angle;
+int scan_num=1000;
 
 
 //declaring the lasercan and pointcloud objects
 sensor_msgs::LaserScan last_laser;
 sensor_msgs::PointCloud2 cloud_out;
 
-
-// Fill in the cloud data
-
+// Laser data callback
 void laserCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
 {
-
+    //assigning laser data
     laser_increment = msg->angle_increment;
     laser_scan = msg->ranges;
-
     last_laser = *msg;
-
-
-    //std::cout << "laser icrement: " << laser_increment << std::endl;
-    if(a==0){
-        a++;
-    for(int i=0; i<512; i++){
-
-    //        std::cout << i << "scan: " << laser_scan[i] << std::endl;
-             // ROS_INFO("scan %d : %f", i, laser_scan[i]);
-
-        }
-    
-    
-
-    }
 
 }
 
 
 
-// %Tag(CALLBACK)%
+// Joint states callback
 void encoCallback(const sensor_msgs::JointState::ConstPtr& msg)
 {
-  //ROS_INFO("I heard: [%s]", msg->data.c_str());
-
-    //std::cout << msg->data << std::endl;
-
-    t++;
-
-    //angle = msg->data;
+    //getting joint state data
     angle = msg->position[1];
-    ROS_INFO("angle: %f",angle);
-    //ROS_INFO("cos angle: %f",cos(angle));
-    //cout<< angle;
-    //angle= (angle/180)*M_PI;
-    
     panangle= msg->position[0];
-    //panangle=(panangle/180)* M_PI;
-    ROS_INFO("pan angle: %f",panangle);
     
-    //endpoint
-    e_x= l_1*sin(panangle)*sin(angle)+l_2*cos(panangle);
-    e_y= -l_1*cos(panangle)*sin(angle)+l_2*sin(panangle)-d_2;
-    e_z= l_1*cos(angle)+d_1;
-                
-    //ROS_INFO("endpoint: (%f,%f,%f) ", e_x,e_y,e_z);
-    //ctn=156;
-
-
-   if( fabs(angle-lastangle)>=(M_PI)/90 && fabs(panangle-lastpan)>=(M_PI)/720 ){     //if(fabs(angle-lastangle)>0.01){
-        if(ctn<1000){
+    
+   if( fabs(angle-lastangle)>=(M_PI)/90 || fabs(panangle-lastpan)>=(M_PI)/720 ){
+        if(ctn<scan_num){
 
             scanSize= (int)laser_scan.size();
-
-            //cloud_out.header = last_laser.header;
+            
+            //assigning point cloud attributes
             cloud_out.height = 1;
-            cloud_out.width  = scanSize*1000;      // scanSize*168
+            cloud_out.width  = scanSize*scan_num;
             cloud_out.fields.resize (3);
             cloud_out.fields[0].name = "x";
             cloud_out.fields[0].offset = 0;
@@ -140,69 +102,27 @@ void encoCallback(const sensor_msgs::JointState::ConstPtr& msg)
 
             for(int i=0; i<scanSize; i++){
 
-           //     x[i+(ctn*scanSize)] = -1* laser_scan[i] * cos( laser_increment*i);
-           //     y[i+(ctn*scanSize)] = laser_scan[i]* sin(laser_increment*i)*sin(angle);
-           //     z[i+(ctn*scanSize)] = -1* laser_scan[i]* sin(laser_increment*i)*cos(angle);
-           //     x[i+(ctn*scanSize)] = x[i+(ctn*scanSize)]*cos(panangle)+z[i+(ctn*scanSize)]*sin(panangle);
-           //     z[i+(ctn*scanSize)] = -x[i+(ctn*scanSize)]*sin(panangle)+z[i+(ctn*scanSize)]*cos(panangle);
-
-           //     xx = -1* laser_scan[i] * cos( laser_increment*i);
-           //     yy = laser_scan[i]* sin(laser_increment*i)*cos(panangle);
-           //     zz = -1* laser_scan[i]* sin(laser_increment*i)*sin(panangle);
-           //     x[i+(ctn*scanSize)] = cos(panangle)*xx + sin(panangle)*sin(angle)*(yy-d1)+sin(panangle)*cos(angle)*(zz+d2);
-           //     y[i+(ctn*scanSize)] = cos(angle)*(yy-d1)-sin(angle)*(zz+d2);
-           //     z[i+(ctn*scanSize)] = -sin(panangle)*xx+ cos(panangle)*sin(angle)*(yy-d1) + cos(panangle)*cos(angle)*(zz+d2);
            
-           //     Kinematics
-                /* 
-                xx= laser_scan[i]* cos(laser_increment*i);
-                yy= laser_scan[i]* sin(laser_increment*i);
-                zz= 0;
-                x[i+(ctn*scanSize)]=xx*cos(panangle)*cos(angle)+
-                                    yy*cos(panangle)*sin(angle)+zz*sin(panangle)+
-                                    l_1*cos(panangle)*sin(angle)-l_2*cos(panangle)*cos(angle);
-                y[i+(ctn*scanSize)]=xx*sin(panangle)*cos(angle)+
-                                    yy*sin(panangle)*sin(angle)-zz*cos(panangle)+
-                                    l_1*sin(panangle)*sin(angle)-l_2*sin(panangle)*cos(angle);
-                z[i+(ctn*scanSize)]=-xx*sin(angle)+yy*cos(angle)+l_1*cos(angle)-l_2*sin(angle)+d_1;
-                
-                */
                 start_angle=-2.094;
                 yy= laser_scan[i]*sin(laser_increment*i+start_angle);
                 xx= laser_scan[i]*cos(laser_increment*i+start_angle);
                 zz= 0;
                 x[i]=xx*cos(panangle)-
                                     yy*sin(panangle)*cos(angle)+zz*sin(panangle)*sin(angle)+
-                                    l_1*sin(panangle)*sin(angle)+l_2*cos(panangle);
+                                    l_1*sin(panangle)*sin(angle)+l_2*sin(panangle);
                                     
                 y[i]=xx*sin(panangle)+
                                     yy*cos(panangle)*cos(angle)-zz*cos(panangle)*sin(angle)-
-                                    l_1*cos(panangle)*sin(angle)+l_2*sin(panangle)-d_2;
+                                    l_1*cos(panangle)*sin(angle)+l_2*cos(panangle)-d_2;
                 z[i]=yy*sin(angle)+zz*cos(angle)+l_1*cos(angle)+d_1;
                 
                 
                 
                 
-     
-                
-                
 
-           //     //std::cout << "scan: " << laser_scan[i] << std::endl;
-                //std::cout << "ctn: " << ctn << std::endl;
-                //ROS_INFO("ctn: %d ", ctn);
-                //std::cout << "pan: " << (panangle*180)/M_PI << std::endl;
-                //std::cout << "angle: " << (angle*180)/M_PI << std::endl;
-                //std::cout << "z: " << z[i+(ctn*scanSize)] << std::endl;
-                 //ROS_INFO("z: %f ", z[i+(ctn*scanSize)]);
 
                 float *pstep = (float*)&cloud_out.data[count * cloud_out.point_step];
 
-                /*
-                pstep[0] = y[i+(ctn*scanSize)];
-                pstep[1] = x[i+(ctn*scanSize)];
-                pstep[2] = z[i+(ctn*scanSize)];
-                */
-                
                 pstep[0] = x[i];
                 pstep[1] = y[i];
                 pstep[2] = z[i];
@@ -213,46 +133,10 @@ void encoCallback(const sensor_msgs::JointState::ConstPtr& msg)
             ctn++;
         }
         
+        //reseting data at certain scan number
         else{
         cloud_out.data.clear();
         ctn=0;
-        }
-
-        if(ctn==-1){
-              ofstream myfile ("example1x.txt");
-              if (myfile.is_open())
-              {
-
-                for(int count = 0; count < 512*154 ; count ++){    //512*168
-                    myfile << x[count] << " " ;
-                }
-                myfile.close();
-              }
-              else cout << "Unable to open file";
-
-
-
-            ofstream myfile2 ("example2y.txt");
-              if (myfile2.is_open())
-              {
-
-                for(int count = 0; count < 512*154; count ++){      //512*168
-                    myfile2 << y[count] << " " ;
-                }
-                myfile2.close();
-              }
-              else cout << "Unable to open file";
-
-
-              ofstream myfile3 ("example3z.txt");
-                if (myfile3.is_open())
-                {
-                  for(int count = 0; count < 512*154; count ++){      //512*168
-                      myfile3 << z[count] << " " ;
-                  }
-                  myfile3.close();
-                }
-                else cout << "Unable to open file";
         }
 
         ctn++;
@@ -260,7 +144,6 @@ void encoCallback(const sensor_msgs::JointState::ConstPtr& msg)
     	lastpan=panangle;
     }
     
-      //std::cout << "angle: " <<   angle << std::endl;
 
 }
 
@@ -274,31 +157,21 @@ int main(int argc, char **argv)
  
   //subscribing topics
   ros::Subscriber sub = n.subscribe("/joint_states", 1000, encoCallback);
-  //ros::Subscriber sub2 = n.subscribe("pan", 1, panCallback);
   ros::Subscriber laserSub = n.subscribe("/hokuyo/scan", 1000, laserCallback); //hokuyo/scan
+  
   //publishing resulting point cloud
   ros::Publisher pclPub = n.advertise<sensor_msgs::PointCloud2> ("output", 10);
-
-
+  
+  
+  //publishing pointcloud
   ros::Rate loop(10);
   while(ros::ok()){
-      //points.data.assign();
-
 
       cloud_out.header.frame_id = "taban";
       cloud_out.header.stamp = last_laser.header.stamp;
       cloud_out.header.seq = cloud_out.header.seq+1;
 
       pclPub.publish(cloud_out);
-
-
-    //  std::cout << "angle: " << laser_scan.size()<< std::endl;
-
-  //    std::cout << " one array is read" << std::endl;
-
-   //   pclPub.publish(cloud);
-
-   //   std::cout << "angle: " << laser_scan.size()<< std::endl;
       ros::spinOnce();
       loop.sleep();
 

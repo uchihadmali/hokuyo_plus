@@ -12,7 +12,7 @@
 #define PI 3.14159265359
 
 double angle=0.0;
-double angle_goal=0.8727;
+double angle_goal=0*0.8727;
 double panangle=0.0;
 double panangle_goal=2.5;
 double angle_vel=0.0;
@@ -20,8 +20,8 @@ double panangle_vel=0.0;
 double goal_reached_angle=0;
 double goal_reached_panangle=0;
 double tolerance=0.3;
-double max_vel_angle=8*PI/180;
-double max_vel_panangle=15*PI/180;
+double max_vel_angle=0*PI/180;
+double max_vel_panangle=1*PI/180;
 double k=1;
 void compare(){
     if(abs(angle-angle_goal)<tolerance){
